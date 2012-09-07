@@ -1,0 +1,16 @@
+---
+applications:
+  .:
+    name: SC4G-Dashboard
+    framework:
+      name: rails3
+      info:
+        mem: 256M
+        description: Rails Application
+        exec: 
+    url: SC4G-Dashboard.cloudfoundry.com
+    mem: 256M
+    instances: 1
+    services:
+      mysql-sc4g:
+        type: mysql
