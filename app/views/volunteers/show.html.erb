@@ -31,6 +31,11 @@
 </p>
 
 <p>
+  <b>Languages Interested In:</b>
+  <%= @volunteer.languages_interested_in.to_sentence %>
+</p>
+
+<p>
   <b>Organizations Interested In:</b>
   <%= @volunteer.orgs_interested_in.to_sentence %>
 </p>
@@ -39,6 +44,13 @@
   <b>Causes Interested In:</b>
   <%= @volunteer.causes_interested_in.to_sentence %>
 </p>
+
+<p>
+  <b>Skills:</b>
+  <%= @volunteer.skills.to_sentence %>
+</p>
+
+
 
 
 
