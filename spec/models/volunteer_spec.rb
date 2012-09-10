@@ -1,4 +1,4 @@
-require 'spec_helper'
+  require 'spec_helper'
 
 describe "Volunteer" do
   before(:all) do
@@ -21,7 +21,8 @@ describe "Volunteer" do
       @volunteer = Volunteer.find(1)
 
       @volunteer.first_name.should == "FirstName_1"
-      @volunteer.company.data.should == "Company_1"
+      @volunteer.company_db.data.should == "Company_1"
+      @volunteer.company.should == "Company_1"
     end
   end
 
@@ -35,7 +36,8 @@ describe "Volunteer" do
       @volunteer = Volunteer.find(1)
 
       @volunteer.first_name.should == "FirstName_1"
-      @volunteer.time_to_commit.data.should == "A_Few_Hours_per_Week"
+      @volunteer.time_to_commit_db.data.should == "A_Few_Hours_per_Week"
+      @volunteer.time_to_commit.should == "A Few Hours per Week"
     end
   end
 
@@ -51,8 +53,10 @@ describe "Volunteer" do
 
       @volunteer.first_name.should == "FirstName_1"
       @volunteer.orgs_interested_in.count.should == 2
-      @volunteer.orgs_interested_in[0].data.should == "Benetech"
-      @volunteer.orgs_interested_in[1].data.should == "FrontlineSMS"
+      @volunteer.orgs_interested_in_db[0].data.should == "Benetech"
+      @volunteer.orgs_interested_in_db[1].data.should == "FrontlineSMS"
+      @volunteer.orgs_interested_in[0].should == "Benetech"
+      @volunteer.orgs_interested_in_db[1].data.should == "FrontlineSMS"
     end
   end
 
@@ -68,8 +72,10 @@ describe "Volunteer" do
 
       @volunteer.first_name.should == "FirstName_1"
       @volunteer.causes_interested_in.count.should == 2
-      @volunteer.causes_interested_in[0].data.should == "Healthcare"
-      @volunteer.causes_interested_in[1].data.should == "Disaster_Relief"
+      @volunteer.causes_interested_in_db[0].data.should == "Healthcare"
+      @volunteer.causes_interested_in[0].should == "Healthcare"
+      @volunteer.causes_interested_in_db[1].data.should == "Disaster_Relief"
+      @volunteer.causes_interested_in[1].should == "Disaster Relief"
     end
   end
 
@@ -85,8 +91,10 @@ describe "Volunteer" do
 
       @volunteer.first_name.should == "FirstName_1"
       @volunteer.languages_interested_in.count.should == 2
-      @volunteer.languages_interested_in[0].data.should == "Ruby"
-      @volunteer.languages_interested_in[1].data.should == "Java_on_Android"
+      @volunteer.languages_interested_in_db[0].data.should == "Ruby"
+      @volunteer.languages_interested_in[0].should == "Ruby"
+      @volunteer.languages_interested_in_db[1].data.should == "Java_on_Android"
+      @volunteer.languages_interested_in[1].should == "Java on Android"
     end
   end
 
@@ -102,8 +110,10 @@ describe "Volunteer" do
 
       @volunteer.first_name.should == "FirstName_1"
       @volunteer.skills.count.should == 2
-      @volunteer.skills[0].data.should == "Product_Management"
-      @volunteer.skills[1].data.should == "User_Interface_Design"
+      @volunteer.skills_db[0].data.should == "Product_Management"
+      @volunteer.skills[0].should == "Product Management"
+      @volunteer.skills_db[1].data.should == "User_Interface_Design"
+      @volunteer.skills[1].should == "User Interface Design"
     end
   end
 
@@ -120,14 +130,16 @@ describe "Volunteer" do
       @volunteer = Volunteer.find(1)
 
       @volunteer.first_name.should == "FirstName_1"
-      @volunteer.open_source_projects.data.should == "yes"
+      @volunteer.open_source_projects_db.data.should == "yes"
+      @volunteer.open_source_projects.should == "yes"
     end
 
     it "should return no if volunteer has contributed to open source projects" do
       @volunteer = Volunteer.find(2)
 
       @volunteer.first_name.should == "FirstName_2"
-      @volunteer.open_source_projects.data.should == "no"
+      @volunteer.open_source_projects_db.data.should == "no"
+      @volunteer.open_source_projects.should == "no"
     end
   end
 
@@ -152,6 +164,37 @@ describe "Volunteer" do
 
       @volunteer.first_name.should == "FirstName_2"
       @volunteer.open_source_projects?.should be_false
+    end
+  end
+
+  describe 'nil attributes should return N/A' do
+
+    before(:each) do
+      Volunteer.create(:first_name => "FirstName_1", :last_name => "LastName_1", :email => "Person_1@example.com", :id => 1)
+    end
+
+    it "company organization should return N/A if nil" do
+      @volunteer = Volunteer.find(1)
+
+      @volunteer.company.should == "N/A"
+    end
+
+    it "organizations_interested_in should return N/A if nil" do
+      @volunteer = Volunteer.find(1)
+
+      @volunteer.orgs_interested_in[0].should == 'N/A'
+    end
+
+    it "causes_interested_in should return N/A if nil" do
+      @volunteer = Volunteer.find(1)
+
+      @volunteer.causes_interested_in[0].should == "N/A"
+    end
+
+    it "open_source_projects should return N/A if nil" do
+      @volunteer = Volunteer.find(1)
+
+      @volunteer.open_source_projects.should == "N/A"
     end
   end
 end

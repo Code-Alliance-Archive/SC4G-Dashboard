@@ -15,6 +15,32 @@
   <%= @volunteer.email %>
 </p>
 
+<p>
+  <b>Company:</b>
+  <%= @volunteer.company %>
+</p>
+
+<p>
+  <b>Time to Commit:</b>
+  <%= @volunteer.time_to_commit %>
+</p>
+
+<p>
+  <b>Has contributed to open source projects?:</b>
+  <%= @volunteer.open_source_projects %>
+</p>
+
+<p>
+  <b>Organizations Interested In:</b>
+  <%= @volunteer.orgs_interested_in.to_sentence %>
+</p>
+
+<p>
+  <b>Causes Interested In:</b>
+  <%= @volunteer.causes_interested_in.to_sentence %>
+</p>
+
+
 
 <%= link_to 'Edit', edit_volunteer_path(@volunteer) %> |
 <%= link_to 'Back', volunteers_path %>

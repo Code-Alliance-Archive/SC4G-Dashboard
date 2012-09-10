@@ -5,6 +5,7 @@
     <th>First name</th>
     <th>Last name</th>
     <th>Email</th>
+    <th>Time To Commit</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,6 +16,11 @@
     <td><%= volunteer.first_name %></td>
     <td><%= volunteer.last_name %></td>
     <td><%= volunteer.email %></td>
+    <% if !volunteer.time_to_commit.nil? %>
+        <td><%= volunteer.time_to_commit.data %></td>
+        <% else %>
+        <td>N/A</td>
+    <% end %>
     <td><%= link_to 'Show', volunteer %></td>
     <td><%= link_to 'Edit', edit_volunteer_path(volunteer) %></td>
     <td><%= link_to 'Destroy', volunteer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
