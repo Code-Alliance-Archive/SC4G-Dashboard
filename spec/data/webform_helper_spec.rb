@@ -22,8 +22,7 @@ describe "Webform Submission Helper" do
       volunteer = Volunteer.where(:id => 1).first
 
       volunteer.should_not be_nil
-      volunteer.first_name.should == "FirstName_1"
-      volunteer.last_name.should == "LastName_1"
+      volunteer.name.should == "FirstName_1 LastName_1"
       volunteer.email.should == "Person_1@example.com"
     end
   end
@@ -45,10 +44,8 @@ describe "Webform Submission Helper" do
       volunteer_first = Volunteer.first
       volunteer_last = Volunteer.last
 
-      volunteer_first.first_name.should == "FirstName_" + volunteer_first.id.to_s
-      volunteer_last.first_name.should == "FirstName_" + volunteer_last.id.to_s
-      volunteer_first.last_name.should == "LastName_" + volunteer_first.id.to_s
-      volunteer_last.last_name.should == "LastName_" + volunteer_last.id.to_s
+      volunteer_first.name.should == "FirstName_" + volunteer_first.id.to_s + " LastName_" + volunteer_first.id.to_s
+      volunteer_last.name.should == "FirstName_" + volunteer_last.id.to_s + " LastName_" + volunteer_last.id.to_s
       volunteer_first.email.should == "Person_" + volunteer_first.id.to_s + "@example.com"
       volunteer_last.email.should == "Person_" + volunteer_last.id.to_s + "@example.com"
 
@@ -72,11 +69,9 @@ describe "Webform Submission Helper" do
       volunteer51 = Volunteer.where(:id => 51).first
       volunteer112 = Volunteer.where(:id => 112).first
 
-      volunteer51.first_name.should == "FirstName_51"
-      volunteer51.last_name.should == "LastName_51"
+      volunteer51.name.should == "FirstName_51 LastName_51"
       volunteer51.email.should == "Person_51@example.com"
-      volunteer112.first_name.should == "FirstName_112"
-      volunteer112.last_name.should == "LastName_112"
+      volunteer112.name.should == "FirstName_112 LastName_112"
       volunteer112.email.should == "Person_112@example.com"
 
     end

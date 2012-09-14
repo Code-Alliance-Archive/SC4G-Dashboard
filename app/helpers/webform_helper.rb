@@ -12,7 +12,7 @@ module WebformHelper
 
         @volunteer = Volunteer.find_or_create_by_id(sid)
 
-        @volunteer.update_attributes(:first_name => first_name, :last_name => last_name, :email => email, :id => sid)
+        @volunteer.update_attributes(:name => first_name + " " + last_name, :email => email, :id => sid)
         @volunteer.save
       end
 

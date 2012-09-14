@@ -138,9 +138,10 @@ FactoryGirl.define do
     data "no"
   end
 
-
-
-
-
-
+  #volunteers
+  factory :volunteer, class: Volunteer do
+    sequence(:id) { |n| n }
+    sequence(:name) { |n| "Name_#{n}" }
+    sequence(:email) { |n| "Name_#{n}@email.com" }
+  end
 end

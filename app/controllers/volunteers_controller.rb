@@ -2,12 +2,20 @@ class VolunteersController < ApplicationController
   # GET /volunteers
   # GET /volunteers.json
   def index
-    @volunteers = Volunteer.all
+    name_filter = params[:name]
+    email_filter = params[:email]
+    company_filter = params[:company]
+    #email_filter = params[:email]
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @volunteers }
+    @volunteers = Volunteer.scoped
+
+    @volunteers = @volunteers.by_name(name_filter) if !name_filter.nil? && !name_filter.blank?
+    @volunteers = @volunteers.by_email(email_filter) if !email_filter.nil? && !email_filter.blank?
+    if !company_filter.nil? && !company_filter.blank?
+      @volunteers = @volunteers.by_company(company_filter)
     end
+
+    #@volunteers = @volunteers.where(volunteer1s[:company].matches("%#{company_filter}%")) if !company_filter.nil?
   end
 
   # GET /volunteers/1

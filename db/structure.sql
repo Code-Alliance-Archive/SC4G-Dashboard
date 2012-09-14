@@ -1139,13 +1139,12 @@ CREATE TABLE `views_view` (
 
 CREATE TABLE `volunteers` (
   `id` int(11) NOT NULL auto_increment,
-  `first_name` varchar(255) default NULL,
-  `last_name` varchar(255) default NULL,
+  `name` varchar(255) default NULL,
   `email` varchar(255) default NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=207 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `watchdog` (
   `wid` int(11) NOT NULL auto_increment COMMENT 'Primary Key: Unique watchdog event ID.',

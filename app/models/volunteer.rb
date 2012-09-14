@@ -1,5 +1,10 @@
 class Volunteer < ActiveRecord::Base
-  attr_accessible :email, :first_name, :last_name, :id, :time_to_commit_db, :orgs_interested_in_db, :causes_interested_in_db, :languages_interested_in_db, :skills_db, :open_source_projects_db, :company_db
+  attr_accessible :email, :name, :id, :time_to_commit_db, :orgs_interested_in_db, :causes_interested_in_db, :languages_interested_in_db, :skills_db, :open_source_projects_db, :company_db
+  #scope :by_name, lambda {|name| {:conditions => ['name like ?' , name]}}
+  scope :by_name, lambda { |name| where("name like ?", '%' + name.to_s + '%')}
+  scope :by_email, lambda { |email| where("email like ?", '%' + email.to_s + '%')}
+  scope :by_company, lambda { |company| select('volunteers.*').joins('inner join webform_submitted_data on volunteers.id=webform_submitted_data.sid').where("webform_submitted_data.cid = 17 AND webform_submitted_data.data like ?", '%' + company.to_s + '%')}
+
   #attr_readonly
   #alias_method :original_company, :company
 
@@ -57,7 +62,12 @@ class Volunteer < ActiveRecord::Base
   end
 
   def time_to_commit
-    time_to_commit_db.data.gsub("_", " ")
+    if time_to_commit_db.nil? || time_to_commit_db.data.nil?
+      value = 'N/A'
+    else
+      value = time_to_commit_db.data.gsub("_", " ")
+    end
+    value
   end
 
   def open_source_projects
