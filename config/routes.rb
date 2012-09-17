@@ -1,9 +1,5 @@
 SV4G::Application.routes.draw do
-  resources :volunteers do
-    collection do
-      match 'search' => 'volunteer#search', :via => [:get, :post], :as => :search
-    end
-  end
+  resources :volunteers
 
   root :to => 'mains#index'
 

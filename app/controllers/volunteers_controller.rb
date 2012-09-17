@@ -5,17 +5,21 @@ class VolunteersController < ApplicationController
     name_filter = params[:name]
     email_filter = params[:email]
     company_filter = params[:company]
-    #email_filter = params[:email]
+
+    skills = params[:skills]
 
     @volunteers = Volunteer.scoped
 
     @volunteers = @volunteers.by_name(name_filter) if !name_filter.nil? && !name_filter.blank?
     @volunteers = @volunteers.by_email(email_filter) if !email_filter.nil? && !email_filter.blank?
-    if !company_filter.nil? && !company_filter.blank?
-      @volunteers = @volunteers.by_company(company_filter)
-    end
+    @volunteers = @volunteers.by_company(company_filter) if !company_filter.nil? && !company_filter.blank?
 
-    #@volunteers = @volunteers.where(volunteer1s[:company].matches("%#{company_filter}%")) if !company_filter.nil?
+    if !skills.nil? && !skills.blank?
+      skills.each do |s|
+        @volunteers = @volunteers.by_skills(s)
+      end
+    end
+    render('index')
   end
 
   # GET /volunteers/1

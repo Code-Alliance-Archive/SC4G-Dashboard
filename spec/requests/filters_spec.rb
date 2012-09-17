@@ -63,6 +63,31 @@ describe "Dashboard" do
     end
   end
 
+  #describe "Skills Filter" do
+  #  before(:each) do
+  #    Volunteer.create(:name => "Tim Ombusa", :email => "TimOmbusa@example.com", :id => 446)
+  #    FactoryGirl.create( :ws_company, data: "ThoughtWorks", sid: 446 )
+  #    FactoryGirl.create( :ws_skills_Product_Management, sid: 446 )
+  #  end
+  #
+  #  it "should filter and only show profiles who have skill 'Product Management'" do
+  #    visit volunteers_path
+  #
+  #    click_button('Skills')
+  #
+  #    find(:css, "#skills_[value='Product Management']").set(true)
+  #
+  #    click_button 'Filter'
+  #    page.should have_selector('.volunteer', :count => 1)
+  #
+  #    page.should have_selector('title', text: "SC4G")
+  #    page.should have_content('Tim Ombusa')
+  #    page.should_not have_content('Kory Lined')
+  #  end
+  #end
+
+
+
 
 
 

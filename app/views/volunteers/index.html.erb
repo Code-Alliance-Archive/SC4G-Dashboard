@@ -67,19 +67,22 @@
           <%= label :company, "Company" %>
           <%= text_field_tag :company %>
           <%= submit_tag 'Filter' %>
-      <% end %>
     </div>
     </div>
-    <div class="row" id="skills">
-      <label class="heading"><b>Skills</b></label>
+    <div class="row" id="skills_checkboxes">
+      <label class="heading"><b><input type="button" value="Skills" id="skills_button"/></b></label>
       <div class="content">
         <ul>
-          <li><input type="checkbox"> Experience Design <br/>
-          <li><input type="checkbox"> Project Management <br/>
-          <li><input type="checkbox"> Software Development <br/>
+          <%= check_box_tag 'skills[]', 'Experience Design' %>
+          <%= label_tag :skills, "Experience Design" %>
+          <%= check_box_tag 'skills[]', 'Product Management' %>
+          <%= label_tag :skills, "Product Management" %>
         </ul>
       </div>
+      <% end %>
+
     </div>
+
     <div class="row" id="timeToCommit">
       <label class="heading"><b>Time To Commit</b></label>
       <div class="content">
