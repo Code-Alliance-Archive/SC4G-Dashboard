@@ -5,11 +5,9 @@ class VolunteersController < ApplicationController
     name_filter = params[:name]
     email_filter = params[:email]
     company_filter = params[:company]
-
     skills = params[:skills]
 
     @volunteers = Volunteer.scoped
-
     @volunteers = @volunteers.by_name(name_filter) if !name_filter.nil? && !name_filter.blank?
     @volunteers = @volunteers.by_email(email_filter) if !email_filter.nil? && !email_filter.blank?
     @volunteers = @volunteers.by_company(company_filter) if !company_filter.nil? && !company_filter.blank?
@@ -19,7 +17,11 @@ class VolunteersController < ApplicationController
         @volunteers = @volunteers.by_skills(s)
       end
     end
-    render('index')
+
+    respond_to do |format|
+      format.html  # index.html.erb
+      format.json  { render :json => @volunteers }
+    end
   end
 
   # GET /volunteers/1

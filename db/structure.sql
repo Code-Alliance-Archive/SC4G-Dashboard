@@ -620,7 +620,7 @@ CREATE TABLE `flood` (
   PRIMARY KEY  (`fid`),
   KEY `allow` (`event`,`identifier`,`timestamp`),
   KEY `purge` (`expiration`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8 COMMENT='Flood controls the threshold of events, such as the...';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Flood controls the threshold of events, such as the...';
 
 CREATE TABLE `history` (
   `uid` int(11) NOT NULL default '0' COMMENT 'The users.uid that read the node nid.',
@@ -847,7 +847,7 @@ CREATE TABLE `queue` (
   PRIMARY KEY  (`item_id`),
   KEY `name_created` (`name`,`created`),
   KEY `expire` (`expire`)
-) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8 COMMENT='Stores items in queues.';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Stores items in queues.';
 
 CREATE TABLE `rdf_mapping` (
   `type` varchar(128) NOT NULL COMMENT 'The name of the entity type a mapping applies to (node, user, comment, etc.).',
@@ -1144,7 +1144,7 @@ CREATE TABLE `volunteers` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=207 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=211 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `watchdog` (
   `wid` int(11) NOT NULL auto_increment COMMENT 'Primary Key: Unique watchdog event ID.',

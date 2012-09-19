@@ -1,5 +1,6 @@
 SV4G::Application.routes.draw do
   resources :volunteers
+  resources :volunteers_js
 
   root :to => 'mains#index'
 

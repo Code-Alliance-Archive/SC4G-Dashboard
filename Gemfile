@@ -30,9 +30,15 @@ end
 gem 'cloudfoundry-jquery-rails'
 
 group :test do
+  gem 'cucumber'
+  gem 'cucumber-rails'
   gem 'capybara', '1.1.2'
+  gem 'capybara-json'
+  gem 'json_spec'
   gem 'factory_girl_rails', '1.4.0'
   gem 'database_cleaner'
+  gem 'watir-webdriver'
+  gem 'addressable'
 end
 
 group :production do
