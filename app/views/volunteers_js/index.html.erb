@@ -1,21 +1,5 @@
-<h1>Listing volunteers_js</h1>
-
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% [].each do |volunteers_j| %>
-  <tr>
-    <td><%= link_to 'Show', volunteers_j %></td>
-    <td><%= link_to 'Edit', edit_volunteers_j_path(volunteers_j) %></td>
-    <td><%= link_to 'Destroy', volunteers_j, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Volunteers j', new_volunteers_j_path %>
+<ul>
+  <li ng:repeat="volunteer in volunteers">
+    {{ volunteer.name }}  {{ volunteer.email }}
+  </li>
+</ul>
