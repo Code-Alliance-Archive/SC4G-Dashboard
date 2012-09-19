@@ -1,5 +1,12 @@
-<ul>
-  <li ng:repeat="volunteer in volunteers">
+<div class="span2">
+  <!--Sidebar content-->
+
+  Search: <input ng-model="query">
+</div>
+<div>
+<ul style="clear: both;">
+  <li ng:repeat="volunteer in volunteers | filter:query">
     {{ volunteer.name }}  {{ volunteer.email }}
   </li>
 </ul>
+</div>

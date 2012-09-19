@@ -1,5 +1,5 @@
 class Volunteer < ActiveRecord::Base
-  attr_accessible :email, :name, :id, :time_to_commit_db, :orgs_interested_in_db, :causes_interested_in_db, :languages_interested_in_db, :skills_db, :open_source_projects_db, :company_db
+  attr_accessible :email, :name, :id, :time_to_commit_db, :orgs_interested_in_db, :causes_interested_in_db, :languages_interested_in_db, :skills_db, :open_source_projects_db, :company_db, :company_db_attributes
   #scope :by_name, lambda {|name| {:conditions => ['name like ?' , name]}}
   scope :by_name, lambda { |name| where("name like ?", '%' + name.to_s + '%')}
   scope :by_email, lambda { |email| where("email like ?", '%' + email.to_s + '%')}
@@ -51,7 +51,7 @@ class Volunteer < ActiveRecord::Base
            :foreign_key => 'sid',
            :conditions => proc {"cid = 14 AND sid = '#{self.id}'"}
 
-  #accepts_nested_attributes_for :company
+  accepts_nested_attributes_for :company_db
 
   def company
     if company_db.nil? || company_db.data.nil?

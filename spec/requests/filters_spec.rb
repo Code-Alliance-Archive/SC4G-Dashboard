@@ -90,20 +90,4 @@ describe "Dashboard" do
       #page.should_not have_content('Max Purple')
     end
   end
-
-  describe "Filter by http get request" do
-    before(:each) do
-      Volunteer.create(:name => "Tim Ombusa", :email => "TimOmbusa@example.com", id: 446)
-      FactoryGirl.create( :ws_company, data: "ThoughtWorks", sid: 446 )
-      FactoryGirl.create( :ws_skills_Product_Management, sid: 446 )
-    end
-
-    it "should return idempodent results for Product Management skills" do
-      visit 'volunteers?commit=Filter&skills%5B%5D=Product_Management'
-
-      page.should_not have_content('Max Purple')
-      page.should have_content('Tim Ombusa')
-    end
-  end
-
 end

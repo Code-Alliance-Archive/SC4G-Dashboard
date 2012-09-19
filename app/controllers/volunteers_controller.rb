@@ -7,7 +7,7 @@ class VolunteersController < ApplicationController
     company_filter = params[:company]
     skills = params[:skills]
 
-    @volunteers = Volunteer.scoped
+    @volunteers = Volunteer.scoped #.joins("LEFT OUTER JOIN webform_submitted_data ON volunteers.id=webform_submitted_data.sid WHERE webform_submitted_data.cid=17").scoped
     @volunteers = @volunteers.by_name(name_filter) if !name_filter.nil? && !name_filter.blank?
     @volunteers = @volunteers.by_email(email_filter) if !email_filter.nil? && !email_filter.blank?
     @volunteers = @volunteers.by_company(company_filter) if !company_filter.nil? && !company_filter.blank?
@@ -17,6 +17,7 @@ class VolunteersController < ApplicationController
         @volunteers = @volunteers.by_skills(s)
       end
     end
+
 
     respond_to do |format|
       format.html  # index.html.erb
