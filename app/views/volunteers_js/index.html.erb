@@ -6,7 +6,7 @@
 <div>
 <ul style="clear: both;">
   <li ng:repeat="volunteer in volunteers | filter:query">
-    {{ volunteer.name }}  {{ volunteer.email }}
+    {{volunteer.name}}, {{volunteer.email}}, {{volunteer.company}}, {{volunteer.skills}}, {{volunteer.time_to_commit}}
   </li>
 </ul>
 </div>

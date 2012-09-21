@@ -1,0 +1,11 @@
+<div>
+  Search: <input ng-model="query">
+</div>
+
+<div ng-controller='VolunteersCtrl' >
+        <ul>
+          <li ng-repeat='volunteer in volunteers | filter:query'>
+            {{volunteer.name}}, {{volunteer.email}}, {{volunteer.company}}, {{volunteer.skills}}, {{volunteer.time_to_commit}}
+          </li>
+        </ul>
+    </div>

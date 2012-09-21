@@ -2,6 +2,9 @@ class VolunteersController < ApplicationController
   # GET /volunteers
   # GET /volunteers.json
   def index
+
+    @volunteers = Volunteer.all
+
     name_filter = params[:name]
     email_filter = params[:email]
     company_filter = params[:company]
@@ -21,7 +24,7 @@ class VolunteersController < ApplicationController
 
     respond_to do |format|
       format.html  # index.html.erb
-      format.json  { render :json => @volunteers }
+      format.json{}
     end
   end
 
@@ -30,10 +33,10 @@ class VolunteersController < ApplicationController
   def show
     @volunteer = Volunteer.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @volunteer }
-    end
+    #respond_to do |format|
+    #  format.html # show.html.erb
+    #  format.json { render json: @volunteer }
+    #end
   end
 
   # GET /volunteers/new

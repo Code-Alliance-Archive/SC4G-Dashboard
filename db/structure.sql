@@ -575,7 +575,7 @@ CREATE TABLE `file_managed` (
   KEY `uid` (`uid`),
   KEY `status` (`status`),
   KEY `timestamp` (`timestamp`)
-) ENGINE=InnoDB AUTO_INCREMENT=125 DEFAULT CHARSET=utf8 COMMENT='Stores information for uploaded files.';
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8 COMMENT='Stores information for uploaded files.';
 
 CREATE TABLE `file_usage` (
   `fid` int(10) unsigned NOT NULL COMMENT 'File ID.',
@@ -620,7 +620,7 @@ CREATE TABLE `flood` (
   PRIMARY KEY  (`fid`),
   KEY `allow` (`event`,`identifier`,`timestamp`),
   KEY `purge` (`expiration`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Flood controls the threshold of events, such as the...';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='Flood controls the threshold of events, such as the...';
 
 CREATE TABLE `history` (
   `uid` int(11) NOT NULL default '0' COMMENT 'The users.uid that read the node nid.',
@@ -847,7 +847,7 @@ CREATE TABLE `queue` (
   PRIMARY KEY  (`item_id`),
   KEY `name_created` (`name`,`created`),
   KEY `expire` (`expire`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Stores items in queues.';
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='Stores items in queues.';
 
 CREATE TABLE `rdf_mapping` (
   `type` varchar(128) NOT NULL COMMENT 'The name of the entity type a mapping applies to (node, user, comment, etc.).',
@@ -1161,7 +1161,7 @@ CREATE TABLE `watchdog` (
   PRIMARY KEY  (`wid`),
   KEY `type` (`type`),
   KEY `uid` (`uid`)
-) ENGINE=InnoDB AUTO_INCREMENT=8807 DEFAULT CHARSET=utf8 COMMENT='Table that contains logs of all system events.';
+) ENGINE=InnoDB AUTO_INCREMENT=9646 DEFAULT CHARSET=utf8 COMMENT='Table that contains logs of all system events.';
 
 CREATE TABLE `webform` (
   `nid` int(10) unsigned NOT NULL COMMENT 'The node identifier of a webform.',
@@ -1235,7 +1235,7 @@ CREATE TABLE `webform_submissions` (
   UNIQUE KEY `sid_nid` (`sid`,`nid`),
   KEY `nid_uid_sid` (`nid`,`uid`,`sid`),
   KEY `nid_sid` (`nid`,`sid`)
-) ENGINE=InnoDB AUTO_INCREMENT=207 DEFAULT CHARSET=utf8 COMMENT='Holds general information about submissions outside of...';
+) ENGINE=InnoDB AUTO_INCREMENT=211 DEFAULT CHARSET=utf8 COMMENT='Holds general information about submissions outside of...';
 
 CREATE TABLE `webform_submitted_data` (
   `nid` int(10) unsigned NOT NULL default '0' COMMENT 'The node identifier of a webform.',
