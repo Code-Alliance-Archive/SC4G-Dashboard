@@ -1,12 +1,18 @@
-<div class="span2">
+<div class="span2" ng-controller="VolunteersListCtrl">
   <!--Sidebar content-->
 
-  Search: <input ng-model="query">
-</div>
-<div>
-<ul style="clear: both;">
-  <li ng:repeat="volunteer in volunteers | filter:query">
-    {{volunteer.name}}, {{volunteer.email}}, {{volunteer.company}}, {{volunteer.skills}}, {{volunteer.time_to_commit}}
-  </li>
-</ul>
+  <form novalidate>
+    Name: <input type="text" ng-model="criteria.name">
+    Company: <input type="text" ng-model="criteria.company">
+
+    <button ng-click="filter()">filter</button>
+  </form>
+
+  <div>
+    <ul style="clear: both;">
+      <li ng-repeat="volunteer in volunteers">
+        {{volunteer.name}}, {{volunteer.email}}, {{volunteer.company}}, {{volunteer.skills}}, {{volunteer.time_to_commit}}
+      </li>
+    </ul>
+  </div>
 </div>
