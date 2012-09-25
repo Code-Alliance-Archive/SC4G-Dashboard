@@ -4,14 +4,22 @@
   <form novalidate>
     Name: <input type="text" ng-model="criteria.name">
     Company: <input type="text" ng-model="criteria.company">
+    Skills:
+    <ul>
+      <li ng-repeat="skill in criteria.skills">
+        <input type="checkbox" ng-model="skill.checked">
+        {{skill.name}}
+      </li>
 
+
+    </ul>
     <button ng-click="filter()">filter</button>
   </form>
 
   <div>
     <ul style="clear: both;">
       <li ng-repeat="volunteer in volunteers">
-        {{volunteer.name}}, {{volunteer.email}}, {{volunteer.company}}, {{volunteer.skills}}, {{volunteer.time_to_commit}}
+        {{volunteer.name}}, {{volunteer.email}}, {{volunteer.company}}, {{volunteer.orgs_interested_in}}
       </li>
     </ul>
   </div>

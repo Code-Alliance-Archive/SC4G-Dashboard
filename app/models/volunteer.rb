@@ -6,8 +6,7 @@ class Volunteer < ActiveRecord::Base
   scope :by_company, lambda { |company| select('volunteers.*').joins('inner join webform_submitted_data on volunteers.id=webform_submitted_data.sid').where("webform_submitted_data.cid = 17 AND webform_submitted_data.data like ?", '%' + company.to_s + '%')}
   scope :by_skills, lambda { |skill| select('volunteers.*').joins('inner join webform_submitted_data on volunteers.id=webform_submitted_data.sid').where("webform_submitted_data.cid = 14 AND webform_submitted_data.data like ?", skill.to_s)}
 
-  #attr_readonly
-  #alias_method :original_company, :company
+
 
   has_one :company_db,
           :select => "data",
