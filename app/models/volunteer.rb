@@ -5,6 +5,10 @@ class Volunteer < ActiveRecord::Base
   scope :by_email, lambda { |email| where("email like ?", '%' + email.to_s + '%')}
   scope :by_company, lambda { |company| select('volunteers.*').joins('inner join webform_submitted_data on volunteers.id=webform_submitted_data.sid').where("webform_submitted_data.cid = 17 AND webform_submitted_data.data like ?", '%' + company.to_s + '%')}
   scope :by_skills, lambda { |skill| select('volunteers.*').joins('inner join webform_submitted_data on volunteers.id=webform_submitted_data.sid').where("webform_submitted_data.cid = 14 AND webform_submitted_data.data like ?", skill.to_s)}
+  scope :by_orgs_interested_in, lambda { |org| select('volunteers.*').joins('inner join webform_submitted_data on volunteers.id=webform_submitted_data.sid').where("webform_submitted_data.cid = 18 AND webform_submitted_data.data like ?", org.to_s)}
+  scope :by_causes_interested_in, lambda { |org| select('volunteers.*').joins('inner join webform_submitted_data on volunteers.id=webform_submitted_data.sid').where("webform_submitted_data.cid = 11 AND webform_submitted_data.data like ?", org.to_s)}
+  scope :by_languages_interested_in, lambda { |org| select('volunteers.*').joins('inner join webform_submitted_data on volunteers.id=webform_submitted_data.sid').where("webform_submitted_data.cid = 13 AND webform_submitted_data.data like ?", org.to_s)}
+  scope :by_time_to_commit, lambda { |time| select('volunteers.*').joins('inner join webform_submitted_data on volunteers.id=webform_submitted_data.sid').where("webform_submitted_data.cid = 19 AND webform_submitted_data.data like ?", org.to_s)}
 
 
 

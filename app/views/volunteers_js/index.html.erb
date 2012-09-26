@@ -22,6 +22,55 @@
           </li>
         </ul>
       </div>
+      <div data-toggle="collapse" data-target="#orgs_interested_in-collapse">
+        <label>Organizations Interested In</label>
+      </div>
+
+      <div class="collapse" id="orgs_interested_in-collapse">
+        <ul>
+          <li ng-repeat="org in criteria.orgs_interested_in">
+            <input type="checkbox" ng-model="org.checked">
+            {{org.name}}
+          </li>
+        </ul>
+      </div>
+
+      <div data-toggle="collapse" data-target="#causes_interested_in-collapse">
+        <label>Causes Interested In</label>
+      </div>
+
+      <div class="collapse" id="causes_interested_in-collapse">
+        <ul>
+          <li ng-repeat="cause in criteria.causes_interested_in">
+            <input type="checkbox" ng-model="cause.checked">
+            {{cause.name}}
+          </li>
+        </ul>
+      </div>
+
+      <div data-toggle="collapse" data-target="#languages_interested_in-collapse">
+        <label>Languages Interested In</label>
+      </div>
+
+      <div class="collapse" id="languages_interested_in-collapse">
+        <ul>
+          <li ng-repeat="language in criteria.languages_interested_in">
+            <input type="checkbox" ng-model="language.checked">
+            {{language.name}}
+          </li>
+        </ul>
+      </div>
+
+      <div data-toggle="collapse" data-target="#languages_interested_in-collapse">
+        <label>Time To Commit</label>
+      </div>
+
+
+      <li ng-repeat="time in criteria.time_to_commit">
+        <input type="radio" ng-model="time_to_commit.one" value="true" />
+        {{time.name}}
+      </li>
+
       <button ng-click="filter()" class="btn">Filter</button>
     </form>
   </fieldset>

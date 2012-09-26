@@ -9,6 +9,13 @@ class VolunteersController < ApplicationController
     email_filter = params[:email]
     company_filter = params[:company]
     skills = params[:skills]
+    orgs_interested_in = params[:orgs_interested_in]
+    causes_interested_in = params[:causes_interested_in]
+    languages_interested_in = params[:languages_interested_in]
+    #still to go
+    time_to_commit = params[:time_to_commit]
+    open_source_projects = params[:open_source_projects]
+
 
     @volunteers = Volunteer.scoped #.joins("LEFT OUTER JOIN webform_submitted_data ON volunteers.id=webform_submitted_data.sid WHERE webform_submitted_data.cid=17").scoped
     @volunteers = @volunteers.by_name(name_filter) if !name_filter.nil? && !name_filter.blank?
@@ -18,6 +25,36 @@ class VolunteersController < ApplicationController
     if !skills.nil? && !skills.blank?
       skills.each do |s|
         @volunteers = @volunteers.by_skills(s)
+      end
+    end
+
+    if !orgs_interested_in.nil? && !orgs_interested_in.blank?
+      orgs_interested_in.each do |s|
+        @volunteers = @volunteers.by_orgs_interested_in(s)
+      end
+    end
+
+    if !causes_interested_in.nil? && !causes_interested_in.blank?
+      causes_interested_in.each do |s|
+        @volunteers = @volunteers.by_causes_interested_in(s)
+      end
+    end
+
+    if !languages_interested_in.nil? && !languages_interested_in.blank?
+      languages_interested_in.each do |s|
+        @volunteers = @volunteers.by_languages_interested_in(s)
+      end
+    end
+
+    if !time_to_commit.nil? && !time_to_commit.blank?
+      time_to_commit.each do |s|
+        @volunteers = @volunteers.by_time_to_commit(s)
+      end
+    end
+
+    if !open_source_projects.nil? && !open_source_projects.blank?
+      open_source_projects.each do |s|
+        @volunteers = @volunteers.by_open_source_projects(s)
       end
     end
 
