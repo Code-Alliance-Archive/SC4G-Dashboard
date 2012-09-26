@@ -6,6 +6,9 @@
         <input type="text" ng-model="criteria.name">
         <label>Company</label>
         <input type="text" ng-model="criteria.company">
+        <label>Email</label>
+        <input type="text" ng-model="criteria.email">
+
 
       <div data-toggle="collapse" data-target="#skills-collapse">
         <label>Skills</label>
@@ -32,7 +35,7 @@
             <a href="http://www.linkedin.com">{{volunteer.name}}'s LinkedIn Profile</a>
             <p>Email: {{volunteer.email}}</p>
             <p>Company: {{volunteer.company}}</p>
-            <p>Interested In: {{volunteer.orgs_interested_in}}</p>
+            <p>Interested In: {{volunteer.orgs_interested_in.to_sentence}}</p>
         </div>
       </li>
     </ul>

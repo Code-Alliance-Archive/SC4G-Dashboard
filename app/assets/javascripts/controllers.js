@@ -2,6 +2,7 @@ function VolunteersListCtrl($scope, $http) {
 
     <!--$scope.criteria.name -->
     <!--$scope.criteria.company -->
+    <!--$scope.criteria.email -->
     $scope.criteria = {};
     $scope.criteria.skills = [{name: 'Project Management / Scrum Master', search_value:'Project_Management', checked:false},
                               {name: 'Software Development', search_value:'Software_Development', checked:false},
@@ -32,6 +33,7 @@ function VolunteersListCtrl($scope, $http) {
     function urlCreater(element){
         var name1 = element.name;
         var company = element.company;
+        var email = element.email;
         var skills = element.skills;
         console.log(skills[1].checked);
         url_string = new String('volunteers.json?name=');
@@ -40,6 +42,9 @@ function VolunteersListCtrl($scope, $http) {
         }
         if (company != undefined ){
             url_string = url_string + '&company=' + company;
+        }
+        if (email != undefined ){
+            url_string = url_string + '&email=' + email;
         }
 
         skill_length = skills.length;
