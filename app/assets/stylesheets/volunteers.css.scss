@@ -1,3 +1,55 @@
 // Place all the styles related to the Volunteers controller here.
 // They will automatically be included in application.css.scss.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+li.profile{
+  background-color:white;
+  height:200px;
+  width: 600px;
+  padding:0;
+  text-align:center;
+  overflow:hidden;
+  padding-top:10px;
+  border:1px;
+  background-color:#fff;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  border-radius:5px;
+  -webkit-box-shadow:5px 5px 5px rgba(0,0,0,.25);
+  -moz-box-shadow:5px 5px 5px rgba(0,0,0,.25);
+  box-shadow:5px 5px 5px rgba(0,0,0,.25)
+
+}
+
+img{
+  float: left;
+  position:relative;
+  margin:20px auto 6px;
+  display:block;
+  width:150px;
+  height:150px;
+  border:4px solid #fff;
+  background-color:#fff;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  border-radius:5px;
+  -webkit-box-shadow:0 1px 1px rgba(0,0,0,.25);
+  -moz-box-shadow:0 1px 1px rgba(0,0,0,.25);
+  box-shadow:0 1px 1px rgba(0,0,0,.25)
+}
+
+.filter{
+  float: left;
+  margin:20px auto 6px;
+  width: 400px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  border:4px solid #fff;
+  background-color:#fff;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  border-radius:5px;
+  -webkit-box-shadow:0 1px 1px rgba(0,0,0,.25);
+  -moz-box-shadow:0 1px 1px rgba(0,0,0,.25);
+  box-shadow:0 1px 1px rgba(0,0,0,.25)
+}

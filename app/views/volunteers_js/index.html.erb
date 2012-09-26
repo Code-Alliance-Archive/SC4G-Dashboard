@@ -1,25 +1,39 @@
-<div class="span2" ng-controller="VolunteersListCtrl">
-  <!--Sidebar content-->
+<div ng-controller="VolunteersListCtrl">
+  <fieldset class="filter">
+    <legend>Filter Volunteers</legend>
+    <form novalidate>
+        <label>Name</label>
+        <input type="text" ng-model="criteria.name">
+        <label>Company</label>
+        <input type="text" ng-model="criteria.company">
 
-  <form novalidate>
-    Name: <input type="text" ng-model="criteria.name">
-    Company: <input type="text" ng-model="criteria.company">
-    Skills:
-    <ul>
-      <li ng-repeat="skill in criteria.skills">
-        <input type="checkbox" ng-model="skill.checked">
-        {{skill.name}}
-      </li>
+      <div data-toggle="collapse" data-target="#skills-collapse">
+        <label>Skills</label>
+      </div>
 
-
-    </ul>
-    <button ng-click="filter()">filter</button>
-  </form>
+      <div class="collapse" id="skills-collapse">
+        <ul>
+          <li ng-repeat="skill in criteria.skills">
+            <input type="checkbox" ng-model="skill.checked">
+            {{skill.name}}
+          </li>
+        </ul>
+      </div>
+      <button ng-click="filter()" class="btn">Filter</button>
+    </form>
+  </fieldset>
 
   <div>
     <ul style="clear: both;">
-      <li ng-repeat="volunteer in volunteers">
-        {{volunteer.name}}, {{volunteer.email}}, {{volunteer.company}}, {{volunteer.orgs_interested_in}}
+      <li ng-repeat="volunteer in volunteers" class="profile">
+        <a href="#"><img src="./assets/profile_placeholder.png"/></a>
+        <div style="padding-left: 50px; padding-top: 10px; float:left; text-align:left;">
+            <h4 style="text-align: left;">{{volunteer.name}}</h4>
+            <a href="http://www.linkedin.com">{{volunteer.name}}'s LinkedIn Profile</a>
+            <p>Email: {{volunteer.email}}</p>
+            <p>Company: {{volunteer.company}}</p>
+            <p>Interested In: {{volunteer.orgs_interested_in}}</p>
+        </div>
       </li>
     </ul>
   </div>
