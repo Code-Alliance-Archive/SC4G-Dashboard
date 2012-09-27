@@ -78,7 +78,22 @@
                 {{time.name}}
               </li>
             </div>
+
+            <div data-toggle="collapse" data-target="#open_source_projects-collapse">
+              <label style="float:left; padding-left: 20px;">Open Source Projects</label>
+            </div>
+
+            <div class="collapse" id="open_source_projects-collapse" style="float:left;">
+              <ul>
+                <li ng-repeat="answer in criteria.open_source_projects">
+                  <input type="radio" ng-model="criteria.open_source_answer" value="{{answer.search_value}}"  />
+                  {{answer.name}}
+                </li>
+              </ul>
+            </div>
+            <div style="float:left; padding-left: 20px;">
             <button ng-click="filter()" class="btn">Filter</button>
+            </div>
           </form>
         </fieldset>
 
@@ -100,7 +115,8 @@
             </li>
           </ul>
         </div>
-      </div>
+
     </div>
   </div>
+</div>
 </div>

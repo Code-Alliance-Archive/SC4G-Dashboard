@@ -8,9 +8,8 @@ class Volunteer < ActiveRecord::Base
   scope :by_orgs_interested_in, lambda { |org| select('volunteers.*').joins('inner join webform_submitted_data on volunteers.id=webform_submitted_data.sid').where("webform_submitted_data.cid = 18 AND webform_submitted_data.data like ?", org.to_s)}
   scope :by_causes_interested_in, lambda { |org| select('volunteers.*').joins('inner join webform_submitted_data on volunteers.id=webform_submitted_data.sid').where("webform_submitted_data.cid = 11 AND webform_submitted_data.data like ?", org.to_s)}
   scope :by_languages_interested_in, lambda { |org| select('volunteers.*').joins('inner join webform_submitted_data on volunteers.id=webform_submitted_data.sid').where("webform_submitted_data.cid = 13 AND webform_submitted_data.data like ?", org.to_s)}
-  scope :by_time_to_commit, lambda { |time| select('volunteers.*').joins('inner join webform_submitted_data on volunteers.id=webform_submitted_data.sid').where("webform_submitted_data.cid = 19 AND webform_submitted_data.data like ?", org.to_s)}
-
-
+  scope :by_time_to_commit, lambda { |time| select('volunteers.*').joins('inner join webform_submitted_data on volunteers.id=webform_submitted_data.sid').where("webform_submitted_data.cid = 19 AND webform_submitted_data.data like ?", time.to_s)}
+  scope :by_open_source_projects, lambda { |answer| select('volunteers.*').joins('inner join webform_submitted_data on volunteers.id=webform_submitted_data.sid').where("webform_submitted_data.cid = 22 AND webform_submitted_data.data like ?", answer.to_s)}
 
   has_one :company_db,
           :select => "data",
