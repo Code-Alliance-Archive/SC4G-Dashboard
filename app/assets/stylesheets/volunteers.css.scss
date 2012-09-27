@@ -40,7 +40,6 @@ img{
 .filter{
   float: left;
   margin:20px auto 6px;
-  width: 400px;
   padding-left: 10px;
   padding-top: 10px;
   padding-bottom: 5px;
@@ -52,4 +51,10 @@ img{
   -webkit-box-shadow:0 1px 1px rgba(0,0,0,.25);
   -moz-box-shadow:0 1px 1px rgba(0,0,0,.25);
   box-shadow:0 1px 1px rgba(0,0,0,.25)
+}
+
+.text-filter {
+  padding-left: 20px;
+  padding-right: 10px;
+  float:left;
 }
