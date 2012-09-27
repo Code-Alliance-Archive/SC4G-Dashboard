@@ -16,6 +16,31 @@ Given /the volunteer with id:(\d+) has ([A-Za-z_]+) skill([s]*)/ do |id, skill_n
   factoryInstance.createSkillFromName(id, skill_name)
 end
 
+Given /the volunteer with id:(\d+) is interested in ([A-Za-z_]+) org([s]*)/ do |id, org_name, _|
+  factoryInstance = WebformSubmittedDataFactory.new()
+  factoryInstance.createOrgFromName(id, org_name)
+end
+
+Given /the volunteer with id:(\d+) is interested in ([A-Za-z_]+) cause([s]*)/ do |id, cause_name, _|
+  factoryInstance = WebformSubmittedDataFactory.new()
+  factoryInstance.createCauseFromName(id, cause_name)
+end
+
+Given /the volunteer with id:(\d+) is interested in ([A-Za-z_]+) language([s]*)/ do |id, language_name, _|
+  factoryInstance = WebformSubmittedDataFactory.new()
+  factoryInstance.createLanguageFromName(id, language_name)
+end
+
+Given /the volunteer with id:(\d+) has ([A-Za-z_]+) time_to_commit([s]*)/ do |id, time_to_commit_name, _|
+  factoryInstance = WebformSubmittedDataFactory.new()
+  factoryInstance.createTimeToCommitFromName(id, time_to_commit_name)
+end
+
+Given /the volunteer with id:(\d+) has ([A-Za-z_]+) participated in open source([s]*)/ do |id, answer_name, _|
+  factoryInstance = WebformSubmittedDataFactory.new()
+  factoryInstance.createOpenSourceFromName(id, answer_name)
+end
+
 When /I visit "(.*?)"$/ do |page|
   @result = get page
 end

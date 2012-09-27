@@ -61,15 +61,33 @@
         </ul>
       </div>
 
-      <div data-toggle="collapse" data-target="#languages_interested_in-collapse">
+
+
+      <div data-toggle="collapse" data-target="#time_to_commit-collapse">
         <label>Time To Commit</label>
       </div>
 
+      <div class="collapse" id="time_to_commit-collapse">
+        <ul>
+          <li ng-repeat="time in criteria.time_to_commit">
+            <input type="radio" ng-model="criteria.time_selected" value="{{time.search_value}}"  />
+            {{time.name}}
+          </li>
+          </ul>
+        </div>
 
-      <li ng-repeat="time in criteria.time_to_commit">
-        <input type="radio" ng-model="time_to_commit.one" value="true" />
-        {{time.name}}
-      </li>
+      <div data-toggle="collapse" data-target="#open_source_projects-collapse">
+        <label>Open Source Projects</label>
+      </div>
+
+      <div class="collapse" id="open_source_projects-collapse">
+        <ul>
+          <li ng-repeat="answer in criteria.open_source_projects">
+            <input type="radio" ng-model="criteria.open_source_answer" value="{{answer.search_value}}"  />
+            {{answer.name}}
+          </li>
+        </ul>
+      </div>
 
       <button ng-click="filter()" class="btn">Filter</button>
     </form>

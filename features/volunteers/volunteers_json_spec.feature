@@ -70,3 +70,58 @@ Feature: Request Volunteers API
     Then the JSON response should have 1 user
     And the JSON response at row 0:name should be Tim Ombusa
 
+  Scenario: Index action (Filtering by orgs_interested_in)
+    Given the following volunteers exist:
+      | id | email                  | name        |
+      | 1  | TimOmbusa@example.com  | Tim Ombusa  |
+      | 2  | MaksDiabin@example.com | Maks Diabin |
+      | 3  | BG@MS.Com              | Bil Gs      |
+    And the volunteer with id:2 is interested in Benetech org
+    When I visit "volunteers.json?orgs_interested_in[]=Benetech"
+    Then the JSON response should have 1 user
+    And the JSON response at row 0:name should be Maks Diabin
+
+  Scenario: Index action (Filtering by causes_interested_in)
+    Given the following volunteers exist:
+      | id | email                  | name        |
+      | 1  | TimOmbusa@example.com  | Tim Ombusa  |
+      | 2  | MaksDiabin@example.com | Maks Diabin |
+      | 3  | BG@MS.Com              | Bil Gs      |
+    And the volunteer with id:2 is interested in Civic_Engagement cause
+    When I visit "volunteers.json?causes_interested_in[]=Civic_Engagement"
+    Then the JSON response should have 1 user
+    And the JSON response at row 0:name should be Maks Diabin
+
+  Scenario: Index action (Filtering by languages_interested_in)
+    Given the following volunteers exist:
+      | id | email                  | name        |
+      | 1  | TimOmbusa@example.com  | Tim Ombusa  |
+      | 2  | MaksDiabin@example.com | Maks Diabin |
+      | 3  | BG@MS.Com              | Bil Gs      |
+    And the volunteer with id:2 is interested in Java language
+    When I visit "volunteers.json?languages_interested_in[]=Java"
+    Then the JSON response should have 1 user
+    And the JSON response at row 0:name should be Maks Diabin
+
+  Scenario: Index action (Filtering by time_to_commit)
+    Given the following volunteers exist:
+      | id | email                  | name        |
+      | 1  | TimOmbusa@example.com  | Tim Ombusa  |
+      | 2  | MaksDiabin@example.com | Maks Diabin |
+      | 3  | BG@MS.Com              | Bil Gs      |
+    And the volunteer with id:2 has A_few_hours_per_week time_to_commit
+    When I visit "volunteers.json?time_to_commit=A_few_hours_per_week"
+    Then the JSON response should have 1 user
+    And the JSON response at row 0:name should be Maks Diabin
+
+  Scenario: Index action (Filtering by open_source_projects)
+    Given the following volunteers exist:
+      | id | email                  | name        |
+      | 1  | TimOmbusa@example.com  | Tim Ombusa  |
+      | 2  | MaksDiabin@example.com | Maks Diabin |
+      | 3  | BG@MS.Com              | Bil Gs      |
+    And the volunteer with id:2 has yes participated in open source
+    When I visit "volunteers.json?open_source_projects=yes"
+    Then the JSON response should have 1 user
+    And the JSON response at row 0:name should be Maks Diabin
+

@@ -12,7 +12,6 @@ class VolunteersController < ApplicationController
     orgs_interested_in = params[:orgs_interested_in]
     causes_interested_in = params[:causes_interested_in]
     languages_interested_in = params[:languages_interested_in]
-    #still to go
     time_to_commit = params[:time_to_commit]
     open_source_projects = params[:open_source_projects]
 
@@ -21,6 +20,8 @@ class VolunteersController < ApplicationController
     @volunteers = @volunteers.by_name(name_filter) if !name_filter.nil? && !name_filter.blank?
     @volunteers = @volunteers.by_email(email_filter) if !email_filter.nil? && !email_filter.blank?
     @volunteers = @volunteers.by_company(company_filter) if !company_filter.nil? && !company_filter.blank?
+    @volunteers = @volunteers.by_time_to_commit(time_to_commit) if !time_to_commit.nil? && !time_to_commit.blank?
+    @volunteers = @volunteers.by_open_source_projects(open_source_projects) if !open_source_projects.nil? && !open_source_projects.blank?
 
     if !skills.nil? && !skills.blank?
       skills.each do |s|
@@ -45,19 +46,6 @@ class VolunteersController < ApplicationController
         @volunteers = @volunteers.by_languages_interested_in(s)
       end
     end
-
-    if !time_to_commit.nil? && !time_to_commit.blank?
-      time_to_commit.each do |s|
-        @volunteers = @volunteers.by_time_to_commit(s)
-      end
-    end
-
-    if !open_source_projects.nil? && !open_source_projects.blank?
-      open_source_projects.each do |s|
-        @volunteers = @volunteers.by_open_source_projects(s)
-      end
-    end
-
 
     respond_to do |format|
       format.html  # index.html.erb

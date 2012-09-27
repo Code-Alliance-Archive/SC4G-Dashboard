@@ -50,11 +50,16 @@ function VolunteersListCtrl($scope, $http) {
         {name: 'Scala', search_value:'Scala', checked:false}];
 
 
+    $scope.criteria.time_selected = "";
+    $scope.criteria.time_to_commit = [{name: 'A few hours per week', search_value:'A_few_hours_per_week'},
+        {name: 'A few hours per month', search_value:'A_few_hours_per_month'},
+        {name: '0 to 8 hours', search_value:'0_to_8_hours'},
+        {name: '8 to 20 hours', search_value:'8_to_20_hours'}];
 
-    $scope.criteria.time_to_commit = [{name: 'A few hours per week', search_value:'A_few_hours_per_week', checked:false},
-        {name: 'A few hours per month', search_value:'A_few_hours_per_month', checked:false},
-        {name: '0 to 8 hours', search_value:'0_to_8_hours', checked:false},
-        {name: '8 to 20 hours', search_value:'8_to_20_hours', checked:false}];
+    $scope.criteria.open_source_answer = "";
+    $scope.criteria.open_source_projects = [{name: 'Yes', search_value:'yes'},
+        {name: 'No', search_value:'no'},
+        {name: 'Either', search_value:'either'}];
 
 
     <!--skills[]="aaa"&skills[]="bbb"-->
@@ -81,8 +86,9 @@ function VolunteersListCtrl($scope, $http) {
         var orgs_interested_in = element.orgs_interested_in;
         var causes_interested_in = element.causes_interested_in;
         var languages_interested_in = element.languages_interested_in;
-        var time_to_commit = element.time_to_commit;
-        console.log(skills[1].checked);
+        var time_selected = element.time_selected;
+        var open_source_projects = element.open_source_answer;
+
         url_string = new String('volunteers.json?name=');
         if (name1 != undefined){
             url_string = url_string + name1;
@@ -92,6 +98,14 @@ function VolunteersListCtrl($scope, $http) {
         }
         if (email != undefined ){
             url_string = url_string + '&email=' + email;
+        }
+
+        if (time_selected != undefined) {
+            url_string = url_string + '&time_to_commit=' + time_selected;
+        }
+
+        if (open_source_projects != undefined && open_source_projects != 'either') {
+            url_string = url_string + '&open_source_projects=' + open_source_projects;
         }
 
         skill_length = skills.length;
