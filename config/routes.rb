@@ -2,7 +2,7 @@ SV4G::Application.routes.draw do
   resources :volunteers
   resources :volunteers_js
 
-  root :to => 'mains#index'
+  root :to => 'volunteers_js#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

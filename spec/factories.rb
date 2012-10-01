@@ -29,6 +29,15 @@ FactoryGirl.define do
     sequence(:data) { |n| "Person_#{n}@example.com"}
   end
 
+  #time submitted
+
+  factory :ws_time_submitted, class: WebformSubmission do
+    nid 5
+    sequence(:sid) { |n| "#{n}" }
+    submitted 1311789532
+    is_draft 0
+  end
+
   #company
 
   factory :ws_company, class: WebformSubmittedData do

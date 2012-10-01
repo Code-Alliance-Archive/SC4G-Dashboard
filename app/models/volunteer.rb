@@ -1,6 +1,8 @@
 class Volunteer < ActiveRecord::Base
-  attr_accessible :email, :name, :id, :time_to_commit_db, :orgs_interested_in_db, :causes_interested_in_db, :languages_interested_in_db, :skills_db, :open_source_projects_db, :company_db, :company_db_attributes
-  #scope :by_name, lambda {|name| {:conditions => ['name like ?' , name]}}
+  attr_accessible :email, :name, :id, :time_to_commit_db, :orgs_interested_in_db, :causes_interested_in_db, :languages_interested_in_db, :skills_db, :open_source_projects_db, :company_db, :company_db_attributes, :time_submitted_db
+
+  default_scope select('volunteers.*').joins('left outer join webform_submissions on volunteers.id=webform_submissions.sid').order('submitted DESC')
+
   scope :by_name, lambda { |name| where("name like ?", '%' + name.to_s + '%')}
   scope :by_email, lambda { |email| where("email like ?", '%' + email.to_s + '%')}
   scope :by_company, lambda { |company| select('volunteers.*').joins('inner join webform_submitted_data on volunteers.id=webform_submitted_data.sid').where("webform_submitted_data.cid = 17 AND webform_submitted_data.data like ?", '%' + company.to_s + '%')}
@@ -28,6 +30,12 @@ class Volunteer < ActiveRecord::Base
           :class_name => "WebformSubmittedData",
           :foreign_key => 'sid',
           :conditions => proc {"cid = 22 AND sid = '#{self.id}'"}
+
+  has_one :time_submitted_db,
+          :select => "submitted",
+          :class_name => "WebformSubmission",
+          :foreign_key => 'sid',
+          :conditions => proc {"is_draft = 0 AND sid = '#{self.id}'"}
 
   has_many :orgs_interested_in_db,
           :select => "data",
@@ -71,6 +79,17 @@ class Volunteer < ActiveRecord::Base
       value = time_to_commit_db.data.gsub("_", " ")
     end
     value
+  end
+
+  def time_submitted
+    if time_submitted_db.nil? || time_submitted_db.submitted.nil?
+      time = 'N/A'
+    else
+      unix_time  = time_submitted_db.submitted
+      time = Time.at(unix_time).to_datetime
+    end
+
+    time
   end
 
   def open_source_projects
