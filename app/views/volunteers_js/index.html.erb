@@ -1,3 +1,47 @@
+<div class="accordion" id="accordion2">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+        Skills
+      </a>
+    </div>
+
+    <div id="collapseOne" class="accordion-body collapse">
+      <div class="accordion-inner">
+        test
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+        Organizations Interested In
+      </a>
+    </div>
+
+    <div id="collapseTwo" class="accordion-body collapse">
+      <div class="accordion-inner">
+        test
+      </div>
+    </div>
+  </div>
+
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+        Languages Interested In
+      </a>
+    </div>
+
+    <div id="collapseThree" class="accordion-body collapse">
+      <div class="accordion-inner">
+        test
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <div ng-controller="VolunteersListCtrl" xmlns="http://www.w3.org/1999/html">
 
@@ -103,7 +147,9 @@
           <a href="#"><img src="./assets/profile_placeholder.png"/></a>
 
           <div style="padding-left: 50px; padding-top: 10px; float:left; text-align:left;">
-            <h4 style="text-align: left;">{{volunteer.name}}</h4>
+            <h4 style="text-align: left;">
+              <a href="/volunteers/{{volunteer.id}}">
+              {{volunteer.name}}</a></h4>
             <a href="http://www.linkedin.com">{{volunteer.name}}'s LinkedIn Profile</a>
 
             <p>Email: {{volunteer.email}}</p>
@@ -111,6 +157,9 @@
             <p>Company: {{volunteer.company}}</p>
 
             <p>Interested In: {{volunteer.orgs_interested_in.to_sentence}}</p>
+
+            <p>Time to Commit: {{volunteer.time_to_commit}}</p>
+
           </div>
         </li>
       </ul>
