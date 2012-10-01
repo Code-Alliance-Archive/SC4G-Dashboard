@@ -1,109 +1,165 @@
-<div ng-controller="VolunteersListCtrl">
-  <fieldset class="filter">
-    <legend>Filter Volunteers</legend>
-    <form novalidate>
-        <label>Name</label>
-        <input type="text" ng-model="criteria.name">
-        <label>Company</label>
-        <input type="text" ng-model="criteria.company">
-        <label>Email</label>
-        <input type="text" ng-model="criteria.email">
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span4">
 
 
-      <div data-toggle="collapse" data-target="#skills-collapse">
-        <label>Skills</label>
+      <div ng-controller="VolunteersListCtrl">
+        <fieldset class="filter">
+          <legend>Filter Volunteers</legend>
+          <form novalidate>
+            <label>Name</label>
+            <input type="text" ng-model="criteria.name">
+            <label>Company</label>
+            <input type="text" ng-model="criteria.company">
+            <label>Email</label>
+            <input type="text" ng-model="criteria.email">
+
+            <div class="accordion" id="accordion2">
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <div data-toggle="collapse" data-target="#skills-collapse">
+                    <label>Skills</label>
+                  </div>
+
+                </div>
+
+                <div id="collapseOne" class="accordion-body collapse in">
+
+                    <div class="collapse" id="skills-collapse">
+                      <ul>
+                        <li ng-repeat="skill in criteria.skills">
+                          <input type="checkbox" ng-model="skill.checked">
+                          {{skill.name}}
+                        </li>
+                      </ul>
+                  </div>
+              </div>
+            </div>
+
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <div data-toggle="collapse" data-target="#orgs_interested_in-collapse">
+                    <label>Organizations Interested In</label>
+                  </div>
+                </div>
+
+                <div id="collapseTwo" class="accordion-body collapse in">
+                    <div class="collapse" id="orgs_interested_in-collapse">
+                      <ul>
+                        <li ng-repeat="org in criteria.orgs_interested_in">
+                          <input type="checkbox" ng-model="org.checked">
+                          {{org.name}}
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+              </div>
+
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <div data-toggle="collapse" data-target="#languages_interested_in-collapse">
+                    <label>Languages Interested In</label>
+                  </div>
+                </div>
+
+                <div id="collapseThree" class="accordion-body collapse in">
+                    <div class="collapse" id="languages_interested_in-collapse">
+                      <ul>
+                        <li ng-repeat="language in criteria.languages_interested_in">
+                          <input type="checkbox" ng-model="language.checked">
+                          {{language.name}}
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+              </div>
+
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <div data-toggle="collapse" data-target="#causes_interested_in-collapse">
+                    <label>Causes Interested In</label>
+                  </div>
+                </div>
+
+                <div id="collapseFour" class="accordion-body collapse in">
+                    <div class="collapse" id="causes_interested_in-collapse">
+                      <ul>
+                        <li ng-repeat="cause in criteria.causes_interested_in">
+                          <input type="checkbox" ng-model="cause.checked">
+                          {{cause.name}}
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+              </div>
+
+
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <div data-toggle="collapse" data-target="#time_to_commit-collapse">
+                    <label>Time To Commit</label>
+                  </div>
+                </div>
+
+                <div id="collapseFive" class="accordion-body collapse in">
+                    <div class="collapse" id="time_to_commit-collapse">
+                      <ul>
+                        <li ng-repeat="time in criteria.time_to_commit">
+                          <input type="radio" ng-model="criteria.time_selected" value="{{time.search_value}}"/>
+                          {{time.name}}
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+              </div>
+
+
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <div data-toggle="collapse" data-target="#open_source_projects-collapse">
+                    <label>Open Source Projects</label>
+                  </div>
+                </div>
+
+                <div id="collapseSix" class="accordion-body collapse in">
+                    <div class="collapse" id="open_source_projects-collapse">
+                      <ul>
+                        <li ng-repeat="answer in criteria.open_source_projects">
+                          <input type="radio" ng-model="criteria.open_source_answer" value="{{answer.search_value}}"/>
+                          {{answer.name}}
+                        </li>
+                      </ul>
+                    </div>
+                </div>
+              </div>
+
+            </div>
+
+            <button ng-click="filter()" class="btn">Filter</button>
+          </form>
+        </fieldset>
       </div>
+      <div class="span8">
 
-      <div class="collapse" id="skills-collapse">
-        <ul>
-          <li ng-repeat="skill in criteria.skills">
-            <input type="checkbox" ng-model="skill.checked">
-            {{skill.name}}
-          </li>
-        </ul>
-      </div>
-      <div data-toggle="collapse" data-target="#orgs_interested_in-collapse">
-        <label>Organizations Interested In</label>
-      </div>
+        <div>
+          <ul style="clear: both;">
+            <li ng-repeat="volunteer in volunteers" class="profile">
+              <a href="#"><img src="./assets/profile_placeholder.png"/></a>
 
-      <div class="collapse" id="orgs_interested_in-collapse">
-        <ul>
-          <li ng-repeat="org in criteria.orgs_interested_in">
-            <input type="checkbox" ng-model="org.checked">
-            {{org.name}}
-          </li>
-        </ul>
-      </div>
+              <div style="padding-left: 50px; padding-top: 10px; float:left; text-align:left;">
+                <h4 style="text-align: left;">{{volunteer.name}}</h4>
+                <a href="http://www.linkedin.com">{{volunteer.name}}'s LinkedIn Profile</a>
 
-      <div data-toggle="collapse" data-target="#causes_interested_in-collapse">
-        <label>Causes Interested In</label>
-      </div>
+                <p>Email: {{volunteer.email}}</p>
 
-      <div class="collapse" id="causes_interested_in-collapse">
-        <ul>
-          <li ng-repeat="cause in criteria.causes_interested_in">
-            <input type="checkbox" ng-model="cause.checked">
-            {{cause.name}}
-          </li>
-        </ul>
-      </div>
+                <p>Company: {{volunteer.company}}</p>
 
-      <div data-toggle="collapse" data-target="#languages_interested_in-collapse">
-        <label>Languages Interested In</label>
-      </div>
-
-      <div class="collapse" id="languages_interested_in-collapse">
-        <ul>
-          <li ng-repeat="language in criteria.languages_interested_in">
-            <input type="checkbox" ng-model="language.checked">
-            {{language.name}}
-          </li>
-        </ul>
-      </div>
-
-
-
-      <div data-toggle="collapse" data-target="#time_to_commit-collapse">
-        <label>Time To Commit</label>
-      </div>
-
-      <div class="collapse" id="time_to_commit-collapse">
-        <ul>
-          <li ng-repeat="time in criteria.time_to_commit">
-            <input type="radio" ng-model="criteria.time_selected" value="{{time.search_value}}"  />
-            {{time.name}}
-          </li>
+                <p>Interested In: {{volunteer.orgs_interested_in.to_sentence}}</p>
+              </div>
+            </li>
           </ul>
         </div>
-
-      <div data-toggle="collapse" data-target="#open_source_projects-collapse">
-        <label>Open Source Projects</label>
       </div>
-
-      <div class="collapse" id="open_source_projects-collapse">
-        <ul>
-          <li ng-repeat="answer in criteria.open_source_projects">
-            <input type="radio" ng-model="criteria.open_source_answer" value="{{answer.search_value}}"  />
-            {{answer.name}}
-          </li>
-        </ul>
-      </div>
-
-      <button ng-click="filter()" class="btn">Filter</button>
-    </form>
-  </fieldset>
-
-  <div>
-    <ul style="clear: both;">
-      <li ng-repeat="volunteer in volunteers" class="profile">
-        <a href="#"><img src="./assets/profile_placeholder.png"/></a>
-        <div style="padding-left: 50px; padding-top: 10px; float:left; text-align:left;">
-            <h4 style="text-align: left;">{{volunteer.name}}</h4>
-            <a href="http://www.linkedin.com">{{volunteer.name}}'s LinkedIn Profile</a>
-            <p>Email: {{volunteer.email}}</p>
-            <p>Company: {{volunteer.company}}</p>
-            <p>Interested In: {{volunteer.orgs_interested_in.to_sentence}}</p>
-        </div>
     </div>
   </div>
 </div>
