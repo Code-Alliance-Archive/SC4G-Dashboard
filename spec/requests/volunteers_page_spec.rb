@@ -9,16 +9,17 @@ describe 'Volunteer Page' do
 
 end
 
-
 describe 'Volunteer Page json' do
   before(:each) do
     Volunteer.create(:name => "Tim Ombusa", :email => "TimOmbusa@example.com", :id => 446)
   end
 
   #use virtual girl here
-  before { visit volunteers_path(:format => "json")}
+  before { visit '/volunteers.json'}
+  #before { visit volunteers_path(:format => "json")}
 
   it 'should return some json' do
+    puts page
     page.should have_content "email"
   end
 end

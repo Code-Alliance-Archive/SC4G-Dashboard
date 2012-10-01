@@ -33,6 +33,7 @@ gem 'cloudfoundry-jquery-rails'
 group :test do
   gem 'cucumber'
   gem 'cucumber-rails'
+  #gem 'capybara-webkit'
   gem 'capybara', '1.1.2'
   gem 'capybara-json'
   gem 'json_spec'

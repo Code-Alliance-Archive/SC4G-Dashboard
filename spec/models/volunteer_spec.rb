@@ -42,6 +42,20 @@ describe "Volunteer" do
     end
   end
 
+  describe "time_submitted" do
+    before(:each) do
+      FactoryGirl.create(:ws_time_submitted, :submitted => 1311789532)
+      Volunteer.create(:name => "FirstName_1 LastName_1", :email => "Person_1@example.com", :id => 1)
+    end
+
+    it "should return the time the volunteer submitted their info" do
+      @volunteer = Volunteer.find(1)
+
+      @volunteer.name.should == "FirstName_1 LastName_1"
+      @volunteer.time_submitted.should == Time.at(1311789532).to_datetime
+    end
+  end
+
   describe "organizations_interested_in" do
     before(:each) do
       FactoryGirl.create(:ws_org_interested_in_Benetech)
