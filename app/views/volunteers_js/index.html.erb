@@ -1,7 +1,7 @@
 <div ng-controller="VolunteersListCtrl">
 
   <div class="row">
-    <div class="span4">
+    <div class="span4" style="padding-left: 100px;">
 
       <fieldset class="filter">
         <legend>Filter Volunteers</legend>
@@ -12,7 +12,6 @@
           <input type="text" ng-model="criteria.company">
           <label>Email</label>
           <input type="text" ng-model="criteria.email">
-
 
           <div data-toggle="collapse" data-target="#skills-collapse">
             <label>Skills</label>
@@ -93,10 +92,11 @@
           </div>
 
           <button ng-click="filter()" class="btn">Filter</button>
+          <button class="btn" type="reset" value="Reset">Reset</button>
         </form>
       </fieldset>
     </div>
-    <div class="span8">
+    <div class="span8 scrollbox" style="padding-top: 50px;">
       <ul style="clear: both;">
         <li ng-repeat="volunteer in volunteers" class="profile">
           <a href="#"><img src="./assets/profile_placeholder.png"/></a>

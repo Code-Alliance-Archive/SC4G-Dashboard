@@ -5,19 +5,18 @@ li.profile{
   background-color:white;
   height:200px;
   width: 600px;
-  padding:0;
+  padding:5px;
   text-align:center;
   overflow:hidden;
-  padding-top:10px;
   border:1px;
   background-color:#fff;
   -webkit-border-radius:5px;
   -moz-border-radius:5px;
   border-radius:5px;
-  -webkit-box-shadow:5px 5px 5px rgba(0,0,0,.25);
-  -moz-box-shadow:5px 5px 5px rgba(0,0,0,.25);
-  box-shadow:5px 5px 5px rgba(0,0,0,.25)
-
+  padding-left: 20px;
+  -webkit-box-shadow:3px 3px 3px rgba(0,0,0,.25);
+  -moz-box-shadow:3px 3px 3px rgba(0,0,0,.25);
+  box-shadow:1px 1px 15px rgba(0,0,0,.25)
 }
 
 img{
@@ -50,11 +49,20 @@ img{
   border-radius:5px;
   -webkit-box-shadow:0 1px 1px rgba(0,0,0,.25);
   -moz-box-shadow:0 1px 1px rgba(0,0,0,.25);
-  box-shadow:0 1px 1px rgba(0,0,0,.25)
+  box-shadow:1px 5px 10px rgba(0,0,0,.25)
 }
 
 .text-filter {
   padding-left: 20px;
   padding-right: 10px;
-  float:left;
+  float:left
+}
+
+
+.scrollbox {
+  width:650px;
+  height:800px;
+  line-height:3em;
+  overflow:scroll;
+  padding-top:50px
 }
