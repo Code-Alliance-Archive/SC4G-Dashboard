@@ -35,14 +35,14 @@ function VolunteersListCtrl($scope, $http) {
         {name: 'Civic Engagement', search_value:'Civic_Engagement', checked:false}];
 
     $scope.criteria.languages_interested_in = [{name: 'C', search_value:'C', checked:false},
-        {name: 'C++', search_value:'C++', checked:false},
-        {name: 'C#', search_value:'C#', checked:false},
-        {name: 'HTML/CSS', search_value:'HTML/CSS', checked:false},
+        {name: 'C++', search_value:'C_Plus_Plus', checked:false},
+        {name: 'C#', search_value:'C_Sharp', checked:false},
+        {name: 'HTML/CSS', search_value:'HTML_CSS', checked:false},
         {name: 'Java', search_value:'Java', checked:false},
         {name: 'Java on Android', search_value:'Java_on_Android', checked:false},
         {name: 'Javascript', search_value:'Javascript', checked:false},
         {name: 'Objective C', search_value:'Objective_C', checked:false},
-        {name: 'Objective C on iPhone', search_value:'Objective_C_on_iPhone', checked:false},
+        {name: 'Objective C on iPhone', search_value:'Objective_C_iPhone', checked:false},
         {name: 'Perl', search_value:'Perl', checked:false},
         {name: 'PHP', search_value:'PHP', checked:false},
         {name: 'Python', search_value:'Python', checked:false},
@@ -51,10 +51,10 @@ function VolunteersListCtrl($scope, $http) {
 
 
     $scope.criteria.time_selected = "";
-    $scope.criteria.time_to_commit = [{name: 'A few hours per week', search_value:'A_few_hours_per_week'},
-        {name: 'A few hours per month', search_value:'A_few_hours_per_month'},
-        {name: '0 to 8 hours', search_value:'0_to_8_hours'},
-        {name: '8 to 20 hours', search_value:'8_to_20_hours'}];
+    $scope.criteria.time_to_commit = [{name: 'A few hours per week', search_value:'A_Few_Hours_per_Week'},
+        {name: 'A few hours per month', search_value:'A_Few_Hours_per_Month'},
+        {name: '0 to 8 hours', search_value:'0_to_8_Hours'},
+        {name: '8 to 20 hours', search_value:'8_to_20_Hours'}];
 
     $scope.criteria.open_source_answer = "";
     $scope.criteria.open_source_projects = [{name: 'Yes', search_value:'yes'},
