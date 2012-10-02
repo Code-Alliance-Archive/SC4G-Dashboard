@@ -39,9 +39,7 @@ img{
 .filter{
   float: left;
   margin:20px auto 6px;
-  padding-left: 10px;
-  padding-top: 10px;
-  padding-bottom: 5px;
+  padding:15px;
   border:4px solid #fff;
   background-color:#fff;
   -webkit-border-radius:5px;
@@ -61,7 +59,7 @@ img{
 
 .scrollbox {
   width:650px;
-  height:800px;
+  height:600px;
   line-height:3em;
   overflow:scroll;
   padding-top:50px
