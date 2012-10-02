@@ -99,12 +99,12 @@ function VolunteersListCtrl($scope, $http) {
         if (email != undefined ){
             url_string = url_string + '&email=' + email;
         }
-
-        if (time_selected != undefined) {
+        if (time_selected != undefined && time_selected.length != 0) {
             url_string = url_string + '&time_to_commit=' + time_selected;
         }
+        console.log(open_source_projects)
 
-        if (open_source_projects != undefined && open_source_projects != 'either') {
+        if (open_source_projects != undefined && open_source_projects != 'either' && open_source_projects.length != 0) {
             url_string = url_string + '&open_source_projects=' + open_source_projects;
         }
 
@@ -136,8 +136,6 @@ function VolunteersListCtrl($scope, $http) {
             }
         }
 
-
-
         return url_string;
 
     }
@@ -153,16 +151,6 @@ function VolunteersListCtrl($scope, $http) {
     function getSkills(skills){
         return skills.filter(isChecked).map(mapElemToSearchValue);
     }
-
-    function getParameters(criteria){
-        console.log(getSkills(criteria.skills));
-        return {name:criteria.name, company:criteria.company, 'skills[]':getSkills(criteria.skills)};
-    }
-
-
-
-
-
 
     init();
 }

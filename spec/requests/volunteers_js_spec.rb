@@ -12,12 +12,12 @@ describe "VolunteersJs" do
       Volunteer.delete_all
     end
 
-    it "it should show volunteers with most recent showing first" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      #response.status.should be(200)
+    it "it should show volunteers with most recent showing first", js:true do
+
       page.should have_selector('title', :text => 'SC4G')
       page.should have_content("Filter Volunteers")
       #page.should have_content("Time Ombusa")
+      #page.should have_content("Kory Kraft")
     end
   end
 end

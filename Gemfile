@@ -14,6 +14,8 @@ gem 'mysql2', '~> 0.3.11'
 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
+  gem 'capybara', '1.1.2'
+  #gem 'capybara-webkit'
 end
 
 # Gems used only for assets and not required
@@ -34,7 +36,6 @@ group :test do
   gem 'cucumber'
   gem 'cucumber-rails'
   #gem 'capybara-webkit'
-  gem 'capybara', '1.1.2'
   gem 'capybara-json'
   gem 'json_spec'
   gem 'factory_girl_rails', '1.4.0'

@@ -88,7 +88,6 @@ class Volunteer < ActiveRecord::Base
       unix_time  = time_submitted_db.submitted
       time = Time.at(unix_time).to_datetime
     end
-
     time
   end
 
