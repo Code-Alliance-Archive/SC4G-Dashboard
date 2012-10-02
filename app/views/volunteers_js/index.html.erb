@@ -14,82 +14,106 @@
           <label>Email</label>
           <input type="text" ng-model="criteria.email">
 
-          <div data-toggle="collapse" data-target="#skills-collapse">
-            <label>Skills</label>
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a href="#skills-collapse" onclick="return toggleElement('skills-collapse')">
+                <label>Skills</label>
+              </a>
+            </div>
+            <div style="display:none;" id="skills-collapse">
+              <ul>
+                <li ng-repeat="skill in criteria.skills">
+                  <input type="checkbox" ng-model="skill.checked">
+                  {{skill.name}}
+                </li>
+              </ul>
+            </div>
           </div>
 
-          <div class="collapse" id="skills-collapse">
-            <ul>
-              <li ng-repeat="skill in criteria.skills">
-                <input type="checkbox" ng-model="skill.checked">
-                {{skill.name}}
-              </li>
-            </ul>
-          </div>
-          <div data-toggle="collapse" data-target="#orgs_interested_in-collapse">
-            <label>Organizations Interested In</label>
-          </div>
-
-          <div class="collapse" id="orgs_interested_in-collapse">
-            <ul>
-              <li ng-repeat="org in criteria.orgs_interested_in">
-                <input type="checkbox" ng-model="org.checked">
-                {{org.name}}
-              </li>
-            </ul>
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a href="#orgs_interested_in-collapse" onclick="return toggleElement('orgs_interested_in-collapse')">
+                <label>Organizations Interested In</label>
+              </a>
+            </div>
+            <div style="display:none;" id="orgs_interested_in-collapse">
+              <ul>
+                <li ng-repeat="org in criteria.orgs_interested_in">
+                  <input type="checkbox" ng-model="org.checked">
+                  {{org.name}}
+                  </input>
+                </li>
+              </ul>
+            </div>
           </div>
 
-          <div data-toggle="collapse" data-target="#causes_interested_in-collapse">
-            <label>Causes Interested In</label>
+          <div class="accordion-group">
+          <div class="accordion-heading">
+            <a href="#causes_interested_in-collapse" onclick="return toggleElement('causes_interested_in-collapse')">
+              <label>Causes Interested In</label>
+            </a>
           </div>
-
-          <div class="collapse" id="causes_interested_in-collapse">
+          <div style="display:none;" id="causes_interested_in-collapse">
             <ul>
               <li ng-repeat="cause in criteria.causes_interested_in">
                 <input type="checkbox" ng-model="cause.checked">
                 {{cause.name}}
+                </input>
               </li>
             </ul>
           </div>
+        </div>
 
-          <div data-toggle="collapse" data-target="#languages_interested_in-collapse">
-            <label>Languages Interested In</label>
+
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a href="#languages_interested_in-collapse" onclick="return toggleElement('languages_interested_in-collapse')">
+                <label>Languages Interested In</label>
+              </a>
+            </div>
+            <div style="display:none;" id="languages_interested_in-collapse">
+              <ul>
+                <li ng-repeat="language in criteria.languages_interested_in">
+                  <input type="checkbox" ng-model="language.checked">
+                  {{language.name}}
+                  </input>
+                </li>
+              </ul>
+            </div>
           </div>
 
-          <div class="collapse" id="languages_interested_in-collapse">
-            <ul>
-              <li ng-repeat="language in criteria.languages_interested_in">
-                <input type="checkbox" ng-model="language.checked">
-                {{language.name}}
-              </li>
-            </ul>
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a href="#time_to_commit-collapse" onclick="return toggleElement('time_to_commit-collapse')">
+                <label>Time to Commit</label>
+              </a>
+            </div>
+            <div style="display:none;" id="time_to_commit-collapse">
+              <ul>
+                <li ng-repeat="time in criteria.time_to_commit">
+                  <input type="radio" ng-model="criteria.time_selected" value="{{time.search_value}}">
+                  {{time.name}}
+                  </input>
+                </li>
+              </ul>
+            </div>
           </div>
 
-
-          <div data-toggle="collapse" data-target="#time_to_commit-collapse">
-            <label>Time To Commit</label>
-          </div>
-
-          <div class="collapse" id="time_to_commit-collapse">
-            <ul>
-              <li ng-repeat="time in criteria.time_to_commit">
-                <input type="radio" ng-model="criteria.time_selected" value="{{time.search_value}}"/>
-                {{time.name}}
-              </li>
-            </ul>
-          </div>
-
-          <div data-toggle="collapse" data-target="#open_source_projects-collapse">
-            <label>Open Source Projects</label>
-          </div>
-
-          <div class="collapse" id="open_source_projects-collapse">
-            <ul>
-              <li ng-repeat="answer in criteria.open_source_projects">
-                <input type="radio" ng-model="criteria.open_source_answer" value="{{answer.search_value}}"/>
-                {{answer.name}}
-              </li>
-            </ul>
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a href="#open_source_projects-collapse" onclick="return toggleElement('open_source_projects-collapse')">
+                <label>Open Source Projects</label>
+              </a>
+            </div>
+            <div style="display:none;" id="open_source_projects-collapse">
+              <ul>
+                <li ng-repeat="answer in criteria.open_source_projects">
+                  <input type="radio" ng-model="criteria.open_source_answer" value="{{answer.search_value}}">
+                  {{answer.name}}
+                  </input>
+                </li>
+              </ul>
+            </div>
           </div>
 
           <button ng-click="filter()" class="btn">Filter</button>
