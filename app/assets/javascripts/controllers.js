@@ -62,8 +62,30 @@ function VolunteersListCtrl($scope, $http) {
         {name: 'Either', search_value:'either'}];
 
 
-    <!--skills[]="aaa"&skills[]="bbb"-->
-    <!-- volunteers?utf8=✓&name=&email=&company=&commit=Filter&skills%5B%5D=Product_Management -->
+    $scope.reset = function(){
+        var element = $scope.criteria;
+        element.name = "";
+        element.company = "";
+        element.email = "";
+        var skills = element.skills;
+        for (var i = 0; i < skills.length; i++){
+            skills[i].checked=false;
+        }
+        var orgs = element.orgs_interested_in;
+        for (var i = 0; i < orgs.length; i++){
+            orgs[i].checked=false;
+        }
+        var causes = element.causes_interested_in;
+        for (var i = 0; i < causes.length; i++){
+            causes[i].checked=false;
+        }
+        var languages = element.languages_interested_in;
+        for (var i = 0; i < languages.length; i++){
+            languages[i].checked=false;
+        }
+        element.time_selected = "";
+        element.open_source_answer = "";
+    }
 
     $scope.filter = function(){
         init();

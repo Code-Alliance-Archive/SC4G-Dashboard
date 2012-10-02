@@ -1,6 +1,7 @@
-// Place all the styles related to the Volunteers controller here.
-// They will automatically be included in application.css.scss.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+ul{
+  list-style-type: none;
+}
+
 li.profile{
   background-color:white;
   height:200px;
@@ -59,7 +60,7 @@ img{
 
 .scrollbox {
   width:650px;
-  height:600px;
+  height:630px;
   line-height:3em;
   overflow:scroll;
   padding-top:50px

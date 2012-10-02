@@ -116,8 +116,8 @@
             </div>
           </div>
           <br>
-          <button ng-click="filter()" class="btn">Filter</button>
-          <button class="btn" type="reset" value="Reset">Reset</button>
+          <button ng-click="filter()" class="btn" type="submit">Filter</button>
+          <button class="btn" ng-click="reset()">Reset</button>
         </form>
       </fieldset>
     </div>
@@ -126,20 +126,26 @@
         <li ng-repeat="volunteer in volunteers" class="profile">
           <a href="#"><img src="./assets/profile_placeholder.png"/></a>
 
-          <div style="padding-left: 50px; padding-top: 10px; float:left; text-align:left;">
-            <h4 style="text-align: left;">
-              <a href="/volunteers/{{volunteer.id}}">
-              {{volunteer.name}}</a></h4>
-            <a href="http://www.linkedin.com">{{volunteer.name}}'s LinkedIn Profile</a>
-
-            <p>Email: {{volunteer.email}}</p>
-
-            <p>Company: {{volunteer.company}}</p>
-
-            <p>Interested In: {{volunteer.orgs_interested_in.to_sentence}}</p>
-
-            <p>Time to Commit: {{volunteer.time_to_commit}}</p>
-
+          <div style="padding-left: 50px; margin-top: 10px; float:left; text-align:left;">
+            <h4 style="text-align: left;"><a href="/volunteers/{{volunteer.id}}">{{volunteer.name}}</a></h4>
+            <p style="font-size: 10px;">submitted at: {{volunteer.time_submitted}}
+                <br>
+                <a style="font-size: 12px; font-family: Calibri;" href="http://www.linkedin.com">{{volunteer.name}}'s LinkedIn Profile</a>
+            </p>
+            <ul style="margin-top: 10px;">
+              <li>
+                Email: {{volunteer.email}}
+              </li>
+              <li>
+                Company: {{volunteer.company}}
+              </li>
+              <li>
+                Interested In: {{volunteer.orgs_interested_in.to_sentence}}
+              </li>
+              <li>
+                Time to Commit: {{volunteer.time_to_commit}}
+              </li>
+            </ul>
           </div>
         </li>
       </ul>
