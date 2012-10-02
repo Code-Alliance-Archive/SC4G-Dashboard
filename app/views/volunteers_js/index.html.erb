@@ -132,21 +132,12 @@
                 <br>
                 <a style="font-size: 12px; font-family: Calibri;" href="http://www.linkedin.com">{{volunteer.name}}'s LinkedIn Profile</a>
             </p>
-            <ul style="margin-top: 10px;">
-              <li>
-                Email: {{volunteer.email}}
-              </li>
-              <li>
-                Company: {{volunteer.company}}
-              </li>
-              <li>
-                Time to Commit: {{volunteer.time_to_commit}}
-              </li>
-              <li>
-                <p>Languages Interested In: {{volunteer.languages_interested_in.slice(1,3).join()}}</p>
-              </li>
-
-            </ul>
+            <div style="margin-top: 10px;">
+                <strong>Email:</strong> {{volunteer.email}} <br>
+                <strong>Company:</strong> {{volunteer.company}} <br>
+                <strong>Time to Commit:</strong> {{volunteer.time_to_commit}} <br>
+                <strong>Languages Interested In:</strong> {{volunteer.languages_interested_in.slice(1,3).join()}} <br>
+            </div>
           </div>
         </li>
       </ul>
