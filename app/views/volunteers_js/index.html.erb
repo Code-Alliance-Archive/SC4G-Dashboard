@@ -140,11 +140,12 @@
                 Company: {{volunteer.company}}
               </li>
               <li>
-                Interested In: {{volunteer.orgs_interested_in.to_sentence}}
-              </li>
-              <li>
                 Time to Commit: {{volunteer.time_to_commit}}
               </li>
+              <li>
+                <p>Languages Interested In: {{volunteer.languages_interested_in.slice(1,3).join()}}</p>
+              </li>
+
             </ul>
           </div>
         </li>
