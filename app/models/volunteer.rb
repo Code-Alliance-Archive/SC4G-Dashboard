@@ -1,7 +1,19 @@
+#TODO: later on we will need to extract a user because we will need user names for HFASS organizations
+#require 'bcrypt'
+
 class Volunteer < ActiveRecord::Base
-  attr_accessible :email, :name, :id, :time_to_commit_db, :orgs_interested_in_db, :causes_interested_in_db, :languages_interested_in_db, :skills_db, :open_source_projects_db, :company_db, :company_db_attributes, :time_submitted_db
+  #include BCrypt
+
+  attr_accessible :password, :email, :name, :id, :time_to_commit_db, :orgs_interested_in_db, :causes_interested_in_db, :languages_interested_in_db, :skills_db, :open_source_projects_db, :company_db, :company_db_attributes, :time_submitted_db, :password_digest, :password_confirmation
+  attr_accessor :password, :password_digest, :password_confirmation
 
   default_scope select('volunteers.*').joins('left outer join webform_submissions on volunteers.id=webform_submissions.sid').order('submitted DESC')
+
+  validates :password, :presence => true, length:{ minimum: 10}
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: true
+  validate :check_password_equals_to_confirmation
+
 
   scope :by_name, lambda { |name| where("name like ?", '%' + name.to_s + '%')}
   scope :by_email, lambda { |email| where("email like ?", '%' + email.to_s + '%')}
@@ -14,54 +26,69 @@ class Volunteer < ActiveRecord::Base
   scope :by_open_source_projects, lambda { |answer| select('volunteers.*').joins('inner join webform_submitted_data on volunteers.id=webform_submitted_data.sid').where("webform_submitted_data.cid = 22 AND webform_submitted_data.data like ?", answer.to_s)}
 
   has_one :company_db,
-          :select => "data",
-          :class_name => "WebformSubmittedData",
-          :foreign_key => 'sid',
-          :conditions => proc {"cid = 17 AND sid = '#{self.id}'"}
+  :select => "data",
+  :class_name => "WebformSubmittedData",
+  :foreign_key => 'sid',
+  :conditions => proc {"cid = 17 AND sid = '#{self.id}'"}
 
   has_one :time_to_commit_db,
-          :select => "data",
-          :class_name => "WebformSubmittedData",
-          :foreign_key => 'sid',
-          :conditions => proc {"cid = 19 AND sid = '#{self.id}'"}
+  :select => "data",
+  :class_name => "WebformSubmittedData",
+  :foreign_key => 'sid',
+  :conditions => proc {"cid = 19 AND sid = '#{self.id}'"}
 
   has_one :open_source_projects_db,
-          :select => "data",
-          :class_name => "WebformSubmittedData",
-          :foreign_key => 'sid',
-          :conditions => proc {"cid = 22 AND sid = '#{self.id}'"}
+  :select => "data",
+  :class_name => "WebformSubmittedData",
+  :foreign_key => 'sid',
+  :conditions => proc {"cid = 22 AND sid = '#{self.id}'"}
 
   has_one :time_submitted_db,
-          :select => "submitted",
-          :class_name => "WebformSubmission",
-          :foreign_key => 'sid',
-          :conditions => proc {"is_draft = 0 AND sid = '#{self.id}'"}
+  :select => "submitted",
+  :class_name => "WebformSubmission",
+  :foreign_key => 'sid',
+  :conditions => proc {"is_draft = 0 AND sid = '#{self.id}'"}
 
   has_many :orgs_interested_in_db,
-          :select => "data",
-          :class_name => "WebformSubmittedData",
-          :foreign_key => 'sid',
-          :conditions => proc {"cid = 18 AND sid = '#{self.id}'"}
+  :select => "data",
+  :class_name => "WebformSubmittedData",
+  :foreign_key => 'sid',
+  :conditions => proc {"cid = 18 AND sid = '#{self.id}'"}
 
   has_many :causes_interested_in_db,
-           :select => "data",
-           :class_name => "WebformSubmittedData",
-           :foreign_key => 'sid',
-           :conditions => proc {"cid = 11 AND sid = '#{self.id}'"}
+  :select => "data",
+  :class_name => "WebformSubmittedData",
+  :foreign_key => 'sid',
+  :conditions => proc {"cid = 11 AND sid = '#{self.id}'"}
 
   has_many :languages_interested_in_db,
-           :select => "data",
-           :class_name => "WebformSubmittedData",
-           :foreign_key => 'sid',
-           :conditions => proc {"cid = 13 AND sid = '#{self.id}'"}
+  :select => "data",
+  :class_name => "WebformSubmittedData",
+  :foreign_key => 'sid',
+  :conditions => proc {"cid = 13 AND sid = '#{self.id}'"}
 
   has_many :skills_db,
-           :select => "data",
-           :class_name => "WebformSubmittedData",
-           :foreign_key => 'sid',
-           :conditions => proc {"cid = 14 AND sid = '#{self.id}'"}
+  :select => "data",
+  :class_name => "WebformSubmittedData",
+  :foreign_key => 'sid',
+  :conditions => proc {"cid = 14 AND sid = '#{self.id}'"}
 
   accepts_nested_attributes_for :company_db
+
+  #def password
+  #  @password ||= Password.new(password_hash)
+  #end
+  #
+  #def password=(new_password)
+  #  @password = Password.create(new_password)
+  #  self.password_hash = @password
+  #end
+  def check_password_equals_to_confirmation
+    if password_confirmation != password
+      errors.add(:password, "Has to be the same as Password Confirmation")
+      errors.add(:password_confirmation, "Has to be the same as Password")
+    end
+  end
 
   def company
     if company_db.nil? || company_db.data.nil?
