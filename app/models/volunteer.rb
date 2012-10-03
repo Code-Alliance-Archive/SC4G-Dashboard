@@ -1,12 +1,11 @@
 #TODO: later on we will need to extract a user because we will need user names for HFASS organizations
-#require 'bcrypt'
+require 'bcrypt'
 
 class Volunteer < ActiveRecord::Base
-  #include BCrypt
+  include BCrypt
 
   attr_accessible :password, :email, :name, :id, :time_to_commit_db, :orgs_interested_in_db, :causes_interested_in_db, :languages_interested_in_db, :skills_db, :open_source_projects_db, :company_db, :company_db_attributes, :time_submitted_db, :password_digest, :password_confirmation
-  attr_accessor :password, :password_digest, :password_confirmation
-
+  attr_accessor :password, :password_confirmation
   default_scope select('volunteers.*').joins('left outer join webform_submissions on volunteers.id=webform_submissions.sid').order('submitted DESC')
 
   validates :password, :presence => true, length:{ minimum: 10}
@@ -79,15 +78,28 @@ class Volunteer < ActiveRecord::Base
   #  @password ||= Password.new(password_hash)
   #end
   #
-  #def password=(new_password)
-  #  @password = Password.create(new_password)
-  #  self.password_hash = @password
-  #end
+  def password=(new_password)
+    @password = Password.create(new_password)
+    self.password_digest = @password
+  end
+
+  def password_digest=(new_password_digest)
+    @password_digest = Password.create(new_password_digest)
+    self.password_digest = @password_digest
+  end
+
+
   def check_password_equals_to_confirmation
     if password_confirmation != password
       errors.add(:password, "Has to be the same as Password Confirmation")
       errors.add(:password_confirmation, "Has to be the same as Password")
     end
+  end
+
+
+
+  def authenticate(password)
+    self.password == password
   end
 
   def company

@@ -319,6 +319,17 @@ describe "Volunteer" do
     end
   end
 
+  describe "check that password_digest is set after creation" do
+    before do
+      @volunteer = create_a_volunteer
+    end
+
+    it "should be populated after creation" do
+
+      assert(@volunteer.password_digest.length != 0)
+    end
+  end
+
   describe "verify that authentication works" do
     before do
       @volunteer = create_a_volunteer
@@ -326,6 +337,8 @@ describe "Volunteer" do
     end
 
     it "should be able to validate volunteer is the same using password" do
+      volunteer_for_validation_errors = @volunteer.valid?
+      volunteer_for_validation_errors.errors.each_full{|msg| puts msg }
       volunteer = Volunteer.find_by_email(@volunteer.email)
       is_authenticated = volunteer.authenticate(create_a_valid_password)
       assert(is_authenticated)
