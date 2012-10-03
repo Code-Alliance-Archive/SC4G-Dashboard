@@ -318,5 +318,19 @@ describe "Volunteer" do
         user_with_same_email.should_not be_valid
     end
   end
+
+  describe "verify that authentication works" do
+    before do
+      @volunteer = create_a_volunteer
+      @volunteer.save
+    end
+
+    it "should be able to validate volunteer is the same using password" do
+      volunteer = Volunteer.find_by_email(@volunteer.email)
+      is_authenticated = volunteer.authenticate(create_a_valid_password)
+      assert(is_authenticated)
+    end
+
+  end
 end
 
