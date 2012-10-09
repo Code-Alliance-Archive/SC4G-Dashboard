@@ -185,6 +185,34 @@ class Volunteer < ActiveRecord::Base
     skills
   end
 
+  def elapsed_time_between_update_and_now
+    current_time = Time.now.to_i
+    if time_submitted_db.nil? || time_submitted_db.submitted.nil?
+      elapsed_time_string = 'N/A'
+    else
+      submitted_time = Time.at(time_submitted_db.submitted).to_i
+
+      msPerMinute = 60
+      msPerHour = msPerMinute * 60
+      msPerDay = msPerHour * 24
+      msPerWeek = msPerDay * 7
+      msPerMonth = msPerDay * 30
+
+      elapsed = current_time - submitted_time
+
+      if elapsed < msPerDay
+        elapsed_time_string = 'Today'
+      elsif elapsed < msPerWeek
+        elapsed_time_string = 'approximately ' + (elapsed/msPerDay).round.to_s + ' day(s) ago'
+      elsif elapsed < msPerMonth
+        elapsed_time_string = 'approximately ' + (elapsed/msPerWeek).round.to_s + ' week(s) ago'
+      else
+        elapsed_time_string = 'approximately ' + (elapsed/msPerMonth).round.to_s + ' month(s) ago'
+      end
+    end
+    elapsed_time_string
+  end
+
 end
 
 

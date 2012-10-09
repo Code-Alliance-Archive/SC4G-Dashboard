@@ -124,16 +124,17 @@
     <div class="span8 scrollbox" style="padding-top: 50px;">
       <ul style="clear: both;">
         <li ng-repeat="volunteer in volunteers" class="profile">
-          <a href="#"><img src="./assets/profile_placeholder.png"/></a>
+          <a href="#" class="profile-picture"><img src="./assets/profile_placeholder.png"/></a>
 
           <div style="padding-left: 50px; margin-top: 10px; width:370px;float:left; text-align:left;">
-            <h4 style="text-align: left;"><a href="/volunteers/{{volunteer.id}}">{{volunteer.name}}</a></h4>
-            <p style="font-size: 10px;">submitted at: {{volunteer.time_submitted}}
-                <br>
-                <a style="font-size: 12px; font-family: Calibri;" href="http://www.linkedin.com">{{volunteer.name}}'s LinkedIn Profile</a>
+            <h4 style="text-align: left;"><a href="/volunteers/{{volunteer.id}}">{{volunteer.name}}</a>
+              <a href="mailto:{{volunteer.email}}" class="small-icon"><img src="./assets/Carta.png"/></a>
+              <a href="http://www.linkedin.com" class="small-icon"><img src="./assets/linkedin-icon-gif.gif"/></a>
+
+            </h4>
+            <p style="font-size: 10px;">submitted {{volunteer.elapsed_time_between_update_and_now}}
             </p>
             <div style="margin-top: 10px;">
-                <strong>Email:</strong> {{volunteer.email}} <br>
                 <strong>Company:</strong> {{volunteer.company}} <br>
                 <strong>Time to Commit:</strong> {{volunteer.time_to_commit}} <br>
                 <strong>Languages Interested In:</strong> {{volunteer.languages_interested_in.slice(1,3).join()}} <br>

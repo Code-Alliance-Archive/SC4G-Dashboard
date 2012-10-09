@@ -21,7 +21,7 @@ li.profile{
   box-shadow:1px 1px 15px rgba(0,0,0,.25)
 }
 
-img{
+.profile-picture{
   float: left;
   position:relative;
   margin:20px auto 6px;
@@ -65,4 +65,11 @@ img{
   line-height:3em;
   overflow:scroll;
   padding-top:50px
+}
+
+.small-icon{
+  width:20px;
+  height:20px;
+  margin-left: 5px;
+  float:right;
 }
