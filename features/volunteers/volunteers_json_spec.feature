@@ -15,6 +15,18 @@ Feature: Request Volunteers API
     And the JSON response at row 1:name should be Maks Diabin
     And the JSON response at row 2:name should be Bil Gs
 
+
+  Scenario: Index action (No filtering)
+    Given the following volunteers with time_submitted exist:
+      | id | email                  | name        | time_submitted    |
+      | 1  | TimOmbusa@example.com  | Tim Ombusa  | 1347978729        |
+      | 2  | MaksDiabin@example.com | Maks Diabin | 1346802773        |
+
+    When I visit "/volunteers.json"
+    Then the JSON response should have 2 users
+    And the JSON response at row 0:elapsed_time_between_update_and_now should be approximately 3 week(s) ago
+    And the JSON response at row 1:elapsed_time_between_update_and_now should be approximately 1 month(s) ago
+
   Scenario: Index action (Filtering by name)
     Given the following volunteers exist:
       | id | email                  | name        |
@@ -124,4 +136,3 @@ Feature: Request Volunteers API
     When I visit "volunteers.json?open_source_projects=yes"
     Then the JSON response should have 1 user
     And the JSON response at row 0:name should be Maks Diabin
-

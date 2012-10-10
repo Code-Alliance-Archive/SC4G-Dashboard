@@ -7,6 +7,14 @@ Given /the following volunteers exist:/ do |table|
   end
 end
 
+Given /the following volunteers with time_submitted exist:/ do |table|
+  table.hashes.each do |hash|
+    value = WebformSubmission.new
+    value.submitted = hash['time_submitted']
+    Volunteer.create ({:id => hash['id'], :email => hash['email'], :name => hash['name'], :time_submitted_db => value})
+  end
+end
+
 Given /the volunteer with id:(\d+) works at (.*)/ do |id, company|
   FactoryGirl.create( :ws_company, data: company, sid: id )
 end
@@ -49,7 +57,7 @@ Then /the JSON response should have (\d+) user([s]*)/ do |number, _|
   JSON.parse(@result.body).length.should == number.to_i
 end
 
-Then /the JSON response at row (\d+):(.+) should be ([A-Za-z ]*)/ do |id, param_name, value|
+Then /the JSON response at row (\d+):(.+) should be ([A-Za-z0-9() ]*)/ do |id, param_name, value|
   parsed = JSON.parse(@result.body)
   puts parsed
   parsed[id.to_i][param_name].should == value
