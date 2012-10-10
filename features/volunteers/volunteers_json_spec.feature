@@ -24,8 +24,8 @@ Feature: Request Volunteers API
 
     When I visit "/volunteers.json"
     Then the JSON response should have 2 users
-    And the JSON response at row 0:elapsed_time_between_update_and_now should be approximately 3 week(s) ago
-    And the JSON response at row 1:elapsed_time_between_update_and_now should be approximately 1 month(s) ago
+    And the JSON response at row 0:time_since_last_update should be approximately 3 week(s) ago
+    And the JSON response at row 1:time_since_last_update should be approximately 1 month(s) ago
 
   Scenario: Index action (Filtering by name)
     Given the following volunteers exist:
