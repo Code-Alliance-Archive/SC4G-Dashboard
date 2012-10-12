@@ -49,7 +49,7 @@ class VolunteersController < ApplicationController
     end
 
     respond_to do |format|
-      format.html  # index.html.erb
+      format.html
       format.json{}
     end
   end

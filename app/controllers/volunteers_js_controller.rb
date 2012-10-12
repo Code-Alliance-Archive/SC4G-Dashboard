@@ -5,7 +5,7 @@ class VolunteersJsController < ApplicationController
     #@volunteers_js = VolunteersJ.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
     end
   end
 
