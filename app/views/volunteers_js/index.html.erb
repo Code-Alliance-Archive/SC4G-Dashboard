@@ -1,5 +1,4 @@
-
-<div ng-controller="VolunteersListCtrl" xmlns="http://www.w3.org/1999/html">
+<div ng-controller="VolunteersListCtrl" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 
   <div class="row">
     <div class="span4" style="padding-left: 100px;">
@@ -48,21 +47,21 @@
           </div>
 
           <div class="accordion-group">
-          <div class="accordion-heading">
-            <a href="#causes_interested_in-collapse" onclick="return toggleElement('causes_interested_in-collapse')">
-              <label>Causes Interested In</label>
-            </a>
+            <div class="accordion-heading">
+              <a href="#causes_interested_in-collapse" onclick="return toggleElement('causes_interested_in-collapse')">
+                <label>Causes Interested In</label>
+              </a>
+            </div>
+            <div style="display:none;" id="causes_interested_in-collapse">
+              <ul>
+                <li ng-repeat="cause in criteria.causes_interested_in">
+                  <input type="checkbox" ng-model="cause.checked">
+                  {{cause.name}}
+                  </input>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div style="display:none;" id="causes_interested_in-collapse">
-            <ul>
-              <li ng-repeat="cause in criteria.causes_interested_in">
-                <input type="checkbox" ng-model="cause.checked">
-                {{cause.name}}
-                </input>
-              </li>
-            </ul>
-          </div>
-        </div>
 
 
           <div class="accordion-group">
@@ -122,23 +121,75 @@
       </fieldset>
     </div>
     <div class="span8 scrollbox" style="padding-top: 50px;">
+      <!--<div ng-controller="ExpandCtrl">-->
       <ul style="clear: both;">
-        <li ng-repeat="volunteer in volunteers" class="profile">
-          <a href="#" class="profile-picture"><img src="./assets/profile_placeholder.png"/></a>
 
-          <div style="padding-left: 50px; margin-top: 10px; width:370px;float:left; text-align:left;">
+        <li ng-repeat="volunteer in volunteers" class="profile">
+          <div style="margin-left:10px; margin-right:10px;overflow: auto;">
             <h4 style="text-align: left;"><a href="/volunteers/{{volunteer.id}}">{{volunteer.name}}</a>
               <a href="mailto:{{volunteer.email}}" class="small-icon"><img src="./assets/Carta.png"/></a>
               <a href="http://www.linkedin.com" class="small-icon"><img src="./assets/linkedin-icon-gif.gif"/></a>
-
             </h4>
-            <p style="font-size: 10px;">submitted {{volunteer.elapsed_time_between_update_and_now}}
-            </p>
-            <div style="margin-top: 10px;">
-                <strong>Company:</strong> {{volunteer.company}} <br>
-                <strong>Time to Commit:</strong> {{volunteer.time_to_commit}} <br>
-                <strong>Languages Interested In:</strong> {{volunteer.languages_interested_in.slice(1,3).join()}} <br>
+
+            <p style="font-size: 10px;">submitted {{volunteer.elapsed_time_between_update_and_now}}</p>
+
+            <strong style="float:left; width:100px;">Company</strong>
+
+            <div style="float:left; margin-left:10px">{{volunteer.company}}</div>
+            <br>
+
+            <strong style="float:left; width:100px;">Organizations</strong>
+
+            <div style="float:left;width:270px;margin-left:10px;">
+              <div style="float:left">
+                {{volunteer.orgs_interested_in.slice(0,3).join(", ")}}
+                      <span style="display:inline-block;" ng-init="is_shown_orgs = (volunteer.orgs_interested_in.length > 3)"
+                            ng-show="is_shown_orgs">
+                        ...<a href="#" ng-click="is_shown_orgs=false">more</a><br>
+                      </span>
+                      <span style="display:inline-block;" ng-show="!is_shown_orgs && (volunteer.orgs_interested_in.length > 3)">
+                      {{", "+volunteer.orgs_interested_in.slice(3,volunteer.orgs_interested_in.length).join(", ")}}
+                      <a href="#" ng-click="is_shown_orgs=true">less</a><br>
+                      </span>
+              </div>
             </div>
+
+            <strong style="float:left; width:100px;">Causes</strong>
+
+            <div style="float:left;width:270px;margin-left:10px;">
+              <div style="float:left">
+                {{volunteer.causes_interested_in.slice(0,3).join(", ")}}
+                      <span style="display:inline-block;" ng-init="is_shown_causes= (volunteer.causes_interested_in.length > 3)"
+                            ng-show="is_shown_causes">
+                        ...<a href="#" ng-click="is_shown_causes=false">more</a><br>
+                        </span>
+                        <span style="display:inline-block" ng-show="!is_shown_causes && (volunteer.causes_interested_in.length > 3)">
+                        {{", "+volunteer.causes_interested_in.slice(3,volunteer.causes_interested_in.length).join(", ")}}
+                        <a href="#" ng-click="is_shown_causes=true">less</a><br>
+                        </span>
+              </div>
+            </div>
+            <strong style="float:left; width:100px;">Languages</strong>
+
+            <div style="float:left;width:270px;margin-left:10px;">
+              <div style="float:left">
+                {{volunteer.languages_interested_in.slice(0,3).join(", ")}}
+                <span style="display:inline-block;" ng-init="is_shown_lang = (volunteer.languages_interested_in.length > 3)" ng-show="is_shown_lang">
+                        ...<a href="#" ng-click="is_shown_lang=false">more</a><br>
+                    </span>
+                    <span style="display:inline-block;" ng-show="!is_shown_lang && (volunteer.languages_interested_in.length > 3)">
+                        {{", "+volunteer.languages_interested_in.slice(3,volunteer.languages_interested_in.length).join(", ")}}
+                        <a href="#" ng-click="is_shown_lang=true">less</a><br>
+                    </span>
+              </div>
+            </div>
+
+            <strong style="float:left; width:100px;">Time commit</strong>
+
+            <div style="float:left; margin-left:10px">{{volunteer.time_to_commit}}</div>
+            <br>
+
+
           </div>
         </li>
       </ul>

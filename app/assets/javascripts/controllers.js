@@ -1,8 +1,8 @@
 function VolunteersListCtrl($scope, $http) {
-
     <!--$scope.criteria.name -->
     <!--$scope.criteria.company -->
     <!--$scope.criteria.email -->
+
     $scope.criteria = {};
     $scope.criteria.skills = [{name: 'Project Management / Scrum Master', search_value:'Project_Management', checked:false},
                               {name: 'Software Development', search_value:'Software_Development', checked:false},
@@ -90,6 +90,7 @@ function VolunteersListCtrl($scope, $http) {
     $scope.filter = function(){
         init();
     }
+
 
     function init(){
         $http({method:'GET', url:urlCreater($scope.criteria)})
