@@ -1,10 +1,26 @@
-  require 'spec_helper'
+require 'spec_helper'
+
+create_a_valid_password = create_a_valid_password
+
+def create_a_volunteer
+  password = create_a_valid_password
+  Volunteer.create(:name => "FirstName_1 LastName_1", :email => "Person_1@example.com", :id => 1, :password => password, :password_confirmation => password )
+end
+
+def create_a_valid_password
+  "t"*11
+end
+
+def create_a_second_valid_volunteer
+  a_valid_password = create_a_valid_password
+  Volunteer.create(:name => "FirstName_2 LastName_2", :email => "Person_2@example.com", :id => 2, :password => a_valid_password, :password_confirmation => a_valid_password)
+end
 
 describe "Volunteer" do
   before(:all) do
-    2.times {FactoryGirl.create(:ws_first_name)}
-    2.times {FactoryGirl.create(:ws_last_name)}
-    2.times {FactoryGirl.create(:ws_email)}
+    2.times { FactoryGirl.create(:ws_first_name) }
+    2.times { FactoryGirl.create(:ws_last_name) }
+    2.times { FactoryGirl.create(:ws_email) }
   end
 
   after(:all) do
@@ -14,7 +30,7 @@ describe "Volunteer" do
   describe "company" do
     before(:each) do
       FactoryGirl.create(:ws_company)
-      Volunteer.create(:name => "FirstName_1 LastName_1", :email => "Person_1@example.com", :id => 1)
+      create_a_volunteer
     end
 
     it "should return the amount of time the volunteer is willing to commit" do
@@ -30,7 +46,7 @@ describe "Volunteer" do
   describe "time_to_commit" do
     before(:each) do
       FactoryGirl.create(:ws_time_to_commit_few_hours_week)
-      Volunteer.create(:name => "FirstName_1 LastName_1", :email => "Person_1@example.com", :id => 1)
+      create_a_volunteer
     end
 
     it "should return the amount of time the volunteer is willing to commit" do
@@ -45,7 +61,7 @@ describe "Volunteer" do
   describe "time_submitted" do
     before(:each) do
       FactoryGirl.create(:ws_time_submitted, :submitted => 1311789532)
-      Volunteer.create(:name => "FirstName_1 LastName_1", :email => "Person_1@example.com", :id => 1)
+      create_a_volunteer
     end
 
     it "should return the time the volunteer submitted their info" do
@@ -60,7 +76,7 @@ describe "Volunteer" do
     before(:each) do
       FactoryGirl.create(:ws_org_interested_in_Benetech)
       FactoryGirl.create(:ws_org_interested_in_FrontlineSMS)
-      Volunteer.create(:name => "FirstName_1 LastName_1", :email => "Person_1@example.com", :id => 1)
+      create_a_volunteer()
     end
 
     it "should return array of organizations the volunteer is interested in" do
@@ -79,7 +95,7 @@ describe "Volunteer" do
     before(:each) do
       FactoryGirl.create(:ws_causes_interested_in_Healthcare)
       FactoryGirl.create(:ws_causes_interested_in_Disaster_Relief)
-      Volunteer.create(:name => "FirstName_1 LastName_1", :email => "Person_1@example.com", :id => 1)
+      create_a_volunteer()
     end
 
     it "should return array of causes the volunteer is interested in" do
@@ -98,7 +114,7 @@ describe "Volunteer" do
     before(:each) do
       FactoryGirl.create(:ws_languages_interested_in_Ruby)
       FactoryGirl.create(:ws_languages_interested_in_Java_on_Android)
-      Volunteer.create(:name => "FirstName_1 LastName_1", :email => "Person_1@example.com", :id => 1)
+      create_a_volunteer
     end
 
     it "should return array of languages the volunteer is interested in" do
@@ -117,7 +133,7 @@ describe "Volunteer" do
     before(:each) do
       FactoryGirl.create(:ws_skills_Product_Management)
       FactoryGirl.create(:ws_skills_User_Interface_Design)
-      Volunteer.create(:name => "FirstName_1 LastName_1", :email => "Person_1@example.com", :id => 1)
+      create_a_volunteer
     end
 
     it "should return array of skills the volunteer is interested in" do
@@ -135,9 +151,11 @@ describe "Volunteer" do
   describe "open_source_projects" do
     before(:each) do
       FactoryGirl.create(:ws_open_source_projects_yes, sid: 1)
-      Volunteer.create(:name => "FirstName_1 LastName_1", :email => "Person_1@example.com", :id => 1)
+      create_a_volunteer
 
-      Volunteer.create(:name => "FirstName_2 LastName_2", :email => "Person_2@example.com", :id => 2)
+
+      create_a_second_valid_volunteer
+
       FactoryGirl.create(:ws_open_source_projects_no, sid: 2)
     end
 
@@ -160,10 +178,10 @@ describe "Volunteer" do
 
   describe "open_source_projects?" do
     before(:each) do
-      Volunteer.create(:name => "FirstName_1 LastName_1", :email => "Person_1@example.com", :id => 1)
+      create_a_volunteer
       FactoryGirl.create(:ws_open_source_projects_yes, sid: 1)
 
-      Volunteer.create(:name => "FirstName_2 LastName_2", :email => "Person_2@example.com", :id => 2)
+      create_a_second_valid_volunteer
       FactoryGirl.create(:ws_open_source_projects_no, sid: 2)
     end
 
@@ -185,7 +203,7 @@ describe "Volunteer" do
   describe 'nil attributes should return N/A' do
 
     before(:each) do
-      Volunteer.create(:name => "FirstName_1 LastName_1", :email => "Person_1@example.com", :id => 1)
+      create_a_volunteer
     end
 
     it "company organization should return N/A if nil" do
@@ -211,6 +229,121 @@ describe "Volunteer" do
 
       @volunteer.open_source_projects.should == "N/A"
     end
+  end
+
+  describe "we should have a password for a user to log in" do
+    before do
+      @volunteer = create_a_volunteer
+    end
+
+    it "define interface" do
+      subject { @volunteer }
+      @volunteer.should respond_to(:email)
+      @volunteer.should respond_to(:password)
+      @volunteer.should respond_to(:password_digest)
+      @volunteer.should respond_to(:password_confirmation)
+    end
+
+    it "verify that user with password is valid" do
+      @volunteer.should be_valid()
+    end
+
+    describe "when password is not present" do
+      before { @volunteer.password = @volunteer.password_confirmation = " " }
+      it { @volunteer.should_not be_valid }
+    end
+
+    describe "when password doesn't match confirmation" do
+      before { @volunteer.password_confirmation = "mismatch" }
+      it { @volunteer.should_not be_valid }
+    end
+
+    describe "when password confirmation is nil" do
+      before { @volunteer.password_confirmation = nil }
+      it { @volunteer.should_not be_valid }
+    end
+  end
+
+  describe "creation of user should fail without password" do
+    before { @volunteer = Volunteer.new(email: "user@example.com") }
+
+    it "should fail if it doesn't quack like a duck" do
+      @volunteer.should_not be_valid()
+    end
+  end
+
+  describe "make sure that password is long enough" do
+    before { @volunteer = Volunteer.new(password: "t"*9) }
+
+
+    it "should fail if the password isn't long enough" do
+      @volunteer.should_not be_valid()
+    end
+  end
+
+  describe "Volunteer email validation" do
+    before do
+      @volunteer = create_a_volunteer
+    end
+
+    describe "when email format is invalid" do
+      it "should be invalid" do
+        addresses = %w[user@foo,com user_at_foo.org example.user@foo. foo@bar_baz.com foo@bar+baz.com]
+        addresses.each do |invalid_address|
+          @volunteer.email = invalid_address
+          @volunteer.should_not be_valid
+        end
+      end
+    end
+
+    describe "when email format is valid" do
+      it "should be valid" do
+        addresses = %w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
+        addresses.each do |valid_address|
+          @volunteer.email = valid_address
+          @volunteer.should be_valid
+        end
+      end
+    end
+  end
+
+  describe "Volunteer with duplicate email must not be saved" do
+    before do
+      @volunteer = create_a_volunteer
+    end
+
+    it "should fail when trying to validate a volunteer with an email address is already taken" do
+        user_with_same_email = @volunteer.dup
+        user_with_same_email.save
+        user_with_same_email.should_not be_valid
+    end
+  end
+
+  describe "check that password_digest is set after creation" do
+    before do
+      @volunteer = create_a_volunteer
+    end
+
+    it "should be populated after creation" do
+
+      assert(@volunteer.password_digest.length != 0)
+    end
+  end
+
+  describe "verify that authentication works" do
+    before do
+      @volunteer = create_a_volunteer
+      @volunteer.save
+    end
+
+    it "should be able to validate volunteer is the same using password" do
+      volunteer_for_validation_errors = @volunteer.valid?
+      volunteer_for_validation_errors.errors.each_full{|msg| puts msg }
+      volunteer = Volunteer.find_by_email(@volunteer.email)
+      is_authenticated = volunteer.authenticate(create_a_valid_password)
+      assert(is_authenticated)
+    end
+
   end
 end
 

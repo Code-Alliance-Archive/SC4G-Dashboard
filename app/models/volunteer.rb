@@ -1,6 +1,8 @@
-class Volunteer < ActiveRecord::Base
-  attr_accessible :email, :name, :id, :time_to_commit_db, :orgs_interested_in_db, :causes_interested_in_db, :languages_interested_in_db, :skills_db, :open_source_projects_db, :company_db, :company_db_attributes, :time_submitted_db
+#TODO: later on we will need to extract a user because we will need user names for HFASS organizations
 
+class Volunteer < ActiveRecord::Base
+
+  attr_accessible :password, :email, :name, :id, :time_to_commit_db, :orgs_interested_in_db, :causes_interested_in_db, :languages_interested_in_db, :skills_db, :open_source_projects_db, :company_db, :company_db_attributes, :time_submitted_db
   default_scope select('volunteers.*').joins('left outer join webform_submissions on volunteers.id=webform_submissions.sid').order('submitted DESC')
 
   scope :by_name, lambda { |name| where("name like ?", '%' + name.to_s + '%')}
@@ -14,52 +16,52 @@ class Volunteer < ActiveRecord::Base
   scope :by_open_source_projects, lambda { |answer| select('volunteers.*').joins('inner join webform_submitted_data on volunteers.id=webform_submitted_data.sid').where("webform_submitted_data.cid = 22 AND webform_submitted_data.data like ?", answer.to_s)}
 
   has_one :company_db,
-          :select => "data",
-          :class_name => "WebformSubmittedData",
-          :foreign_key => 'sid',
-          :conditions => proc {"cid = 17 AND sid = '#{self.id}'"}
+  :select => "data",
+  :class_name => "WebformSubmittedData",
+  :foreign_key => 'sid',
+  :conditions => proc {"cid = 17 AND sid = '#{self.id}'"}
 
   has_one :time_to_commit_db,
-          :select => "data",
-          :class_name => "WebformSubmittedData",
-          :foreign_key => 'sid',
-          :conditions => proc {"cid = 19 AND sid = '#{self.id}'"}
+  :select => "data",
+  :class_name => "WebformSubmittedData",
+  :foreign_key => 'sid',
+  :conditions => proc {"cid = 19 AND sid = '#{self.id}'"}
 
   has_one :open_source_projects_db,
-          :select => "data",
-          :class_name => "WebformSubmittedData",
-          :foreign_key => 'sid',
-          :conditions => proc {"cid = 22 AND sid = '#{self.id}'"}
+  :select => "data",
+  :class_name => "WebformSubmittedData",
+  :foreign_key => 'sid',
+  :conditions => proc {"cid = 22 AND sid = '#{self.id}'"}
 
   has_one :time_submitted_db,
-          :select => "submitted",
-          :class_name => "WebformSubmission",
-          :foreign_key => 'sid',
-          :conditions => proc {"is_draft = 0 AND sid = '#{self.id}'"}
+  :select => "submitted",
+  :class_name => "WebformSubmission",
+  :foreign_key => 'sid',
+  :conditions => proc {"is_draft = 0 AND sid = '#{self.id}'"}
 
   has_many :orgs_interested_in_db,
-          :select => "data",
-          :class_name => "WebformSubmittedData",
-          :foreign_key => 'sid',
-          :conditions => proc {"cid = 18 AND sid = '#{self.id}'"}
+  :select => "data",
+  :class_name => "WebformSubmittedData",
+  :foreign_key => 'sid',
+  :conditions => proc {"cid = 18 AND sid = '#{self.id}'"}
 
   has_many :causes_interested_in_db,
-           :select => "data",
-           :class_name => "WebformSubmittedData",
-           :foreign_key => 'sid',
-           :conditions => proc {"cid = 11 AND sid = '#{self.id}'"}
+  :select => "data",
+  :class_name => "WebformSubmittedData",
+  :foreign_key => 'sid',
+  :conditions => proc {"cid = 11 AND sid = '#{self.id}'"}
 
   has_many :languages_interested_in_db,
-           :select => "data",
-           :class_name => "WebformSubmittedData",
-           :foreign_key => 'sid',
-           :conditions => proc {"cid = 13 AND sid = '#{self.id}'"}
+  :select => "data",
+  :class_name => "WebformSubmittedData",
+  :foreign_key => 'sid',
+  :conditions => proc {"cid = 13 AND sid = '#{self.id}'"}
 
   has_many :skills_db,
-           :select => "data",
-           :class_name => "WebformSubmittedData",
-           :foreign_key => 'sid',
-           :conditions => proc {"cid = 14 AND sid = '#{self.id}'"}
+  :select => "data",
+  :class_name => "WebformSubmittedData",
+  :foreign_key => 'sid',
+  :conditions => proc {"cid = 14 AND sid = '#{self.id}'"}
 
   accepts_nested_attributes_for :company_db
 
@@ -146,36 +148,31 @@ class Volunteer < ActiveRecord::Base
     skills
   end
 
-  def elapsed_time_between_update_and_now
-    current_time = Time.now.to_i
+  def time_since_last_update
     if time_submitted_db.nil? || time_submitted_db.submitted.nil?
-      elapsed_time_string = 'N/A'
-    else
-      submitted_time = Time.at(time_submitted_db.submitted).to_i
-
-      msPerMinute = 60
-      msPerHour = msPerMinute * 60
-      msPerDay = msPerHour * 24
-      msPerWeek = msPerDay * 7
-      msPerMonth = msPerDay * 30
-
-      elapsed = current_time - submitted_time
-
-      if elapsed < msPerDay
-        elapsed_time_string = 'Today'
-      elsif elapsed < msPerWeek
-        elapsed_time_string = 'approximately ' + (elapsed/msPerDay).round.to_s + ' day(s) ago'
-      elsif elapsed < msPerMonth
-        elapsed_time_string = 'approximately ' + (elapsed/msPerWeek).round.to_s + ' week(s) ago'
-      else
-        elapsed_time_string = 'approximately ' + (elapsed/msPerMonth).round.to_s + ' month(s) ago'
-      end
+      return 'N/A'
     end
-    elapsed_time_string
+
+    seconds_per_minute = 60
+    minutes_per_hour = seconds_per_minute * 60
+    minutes_per_day = minutes_per_hour * 24
+    minutes_per_week = minutes_per_day * 7
+    minutes_per_month = minutes_per_day * 30
+
+    elapsed = Time.now.to_i - Time.at(time_submitted_db.submitted).to_i
+
+    if elapsed < minutes_per_day
+      'Today'
+    elsif elapsed < minutes_per_week
+      format_string_value(elapsed/minutes_per_day, "day")
+    elsif elapsed < minutes_per_month
+      format_string_value(elapsed/minutes_per_week, "week")
+    else
+      format_string_value(elapsed/minutes_per_month,"month")
+    end
   end
 
+  def format_string_value(value, title)
+    'approximately ' + value.round.to_s + ' ' + title +'(s) ago'
+  end
 end
-
-
-
-

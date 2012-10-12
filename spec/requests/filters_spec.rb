@@ -87,7 +87,6 @@ describe "Dashboard" do
       assert (Volunteer.by_skills('Product_Management').count() == 1)
       page.should have_selector('title', text: "SC4G")
       page.should have_content('Tim Ombusa')
-      #page.should_not have_content('Max Purple')
     end
   end
 end
