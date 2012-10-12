@@ -1,8 +1,14 @@
 SV4G::Application.routes.draw do
+
+  devise_for :members, :controllers => {:confirmations => 'confirmations'}
+  devise_scope :user do
+    put "/confirm" => "confirmations#confirm"
+  end
+
   resources :volunteers
   resources :volunteers_js
-
   root :to => 'volunteers_js#index'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

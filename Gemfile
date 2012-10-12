@@ -4,7 +4,7 @@ gem 'rails', '3.2.8'
 gem 'bootstrap-sass'
 gem 'vmc'
 gem 'rabl'
-gem 'bcrypt-ruby'
+gem 'devise'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
