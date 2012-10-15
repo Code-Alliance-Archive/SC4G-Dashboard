@@ -1,7 +1,7 @@
 <div ng-controller="VolunteersListCtrl" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 
   <div class="row">
-    <div class="span4" style="padding-left: 100px;">
+    <div class="span3" style="padding-left: 100px;">
 
       <fieldset class="filter">
         <legend>Filter Volunteers</legend>
@@ -120,10 +120,8 @@
         </form>
       </fieldset>
     </div>
-    <div class="span8 scrollbox" style="padding-top: 50px;">
-      <!--<div ng-controller="ExpandCtrl">-->
+    <div class="span9 scrollbox" style="padding-top: 50px;">
       <ul style="clear: both;">
-
         <li ng-repeat="volunteer in volunteers" class="profile">
           <div style="margin-left:10px; margin-right:10px;overflow: auto;">
             <h4 style="text-align: left;"><a href="/volunteers/{{volunteer.id}}">{{volunteer.name}}</a>
