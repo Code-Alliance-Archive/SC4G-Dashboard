@@ -8,7 +8,7 @@ development:
   encodding: utf8
   database: sc4good
   username: root
-  password: password
+  password:
   socket: /tmp/mysql.sock
 #  adapter: mysql2
 #  database: sc4good
