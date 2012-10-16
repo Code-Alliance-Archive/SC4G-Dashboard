@@ -1,27 +1,39 @@
 ul{
   list-style-type: none;
-  columns: 2 12em;
-  column-gap: 1em;
-  -moz-columns: 2 12em;
-  -moz-column-gap: 1em;
-  -webkit-columns: 2 12em;
-  -webkit-column-gap: 1em;
+  columns: 410px 2;
+  column-gap: 0;
+  -moz-columns: 410px 2;
+  -moz-column-gap: 0;
+  -webkit-columns: 410px 2;
+  -webkit-column-gap: 0;
+}
+
+li.profile:last-child {
+  margin-bottom: 300px;
+}
+
+.scrollbox {
+  height:630px;
+  overflow: scroll;
 }
 
 li.profile{
-  height:250px;
+  height:240px;
   width: 400px;
-  padding-top:10px;
-  padding-bottom:15px;
+  padding:10px;
+  //margin-top: 10px;
   margin-bottom: 10px;
+  margin-left: 10px;
   overflow:auto;
   border:1px;
   background-color:#fff;
   -webkit-border-radius:5px;
+  -moz-border-radius: 5px;
   border-radius:5px;
   padding-left: 20px;
-  -webkit-box-shadow:3px 3px 3px rgba(0,0,0,.25);
-  box-shadow:1px 1px 15px rgba(0,0,0,.25)
+  -webkit-box-shadow:1px 1px 10px rgba(0,0,0,.25);
+  -moz-box-shadow: 1px 1px 10px rgba(0,0,0,.25);
+  box-shadow:1px 1px 10px rgba(0,0,0,.25)
 }
 
 .filter{
@@ -33,23 +45,9 @@ li.profile{
   -webkit-border-radius:5px;
   -moz-border-radius:5px;
   border-radius:5px;
-  -webkit-box-shadow:0 1px 1px rgba(0,0,0,.25);
-  -moz-box-shadow:0 1px 1px rgba(0,0,0,.25);
+  -webkit-box-shadow:1 5px 10px rgba(0,0,0,.25);
+  -moz-box-shadow:1 5px 10px rgba(0,0,0,.25);
   box-shadow:1px 5px 10px rgba(0,0,0,.25)
-}
-
-.text-filter {
-  padding-left: 20px;
-  padding-right: 10px;
-  float:left
-}
-
-
-.scrollbox {
-  height:630px;
-  line-height:3em;
-  overflow-y:scroll;
-  padding-top:50px;
 }
 
 .small-icon {
