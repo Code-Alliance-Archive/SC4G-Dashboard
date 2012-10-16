@@ -1,7 +1,7 @@
 <div ng-controller="VolunteersListCtrl" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 
   <div class="row-fluid">
-    <div class="span3">
+    <div class="span3 scrollbox">
       <fieldset class="filter">
         <legend>Filter Volunteers</legend>
         <form novalidate>
@@ -120,7 +120,7 @@
       </fieldset>
     </div>
     <div class="span9 scrollbox" style="padding-top: 50px;">
-      <ul style="clear: both;">
+      <ul style="clear: both;" class="two-column-view">
         <li ng-repeat="volunteer in volunteers" class="profile">
           <div style="margin-left:10px; margin-right:10px;overflow: auto;">
             <h4 style="text-align: left;"><a href="/volunteers/{{volunteer.id}}">{{volunteer.name}}</a>

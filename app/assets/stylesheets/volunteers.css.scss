@@ -1,5 +1,4 @@
-$pink_color: pink;
-
+$scroll-height: 40em;
 
 .filter{
   margin-left: 15%;
@@ -10,7 +9,7 @@ $pink_color: pink;
   //margin:20px auto 6px;
   //padding:15px;
   border:4px solid #fff;
-  background-color:$pink_color;
+  background-color: white;
   -webkit-border-radius:5px;
   -moz-border-radius:5px;
   border-radius:5px;
@@ -24,11 +23,11 @@ ul,li{
 }
 
 .scrollbox {
-  height: 46em;
+  height: $scroll-height;
   overflow: auto;
 }
 
-.scrollbox ul{
+.two-column-view{
   columns: 410px 2;
   column-gap: 1em;
   -moz-columns: 410px 2;
