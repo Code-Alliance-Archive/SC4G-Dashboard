@@ -1,25 +1,49 @@
-ul{
+$pink_color: pink;
+
+
+.filter{
+  margin-left: 15%;
+  margin-right: 10%;
+  margin-top: 10%;
+  float: left;
+  padding: 3%;
+  //margin:20px auto 6px;
+  //padding:15px;
+  border:4px solid #fff;
+  background-color:$pink_color;
+  -webkit-border-radius:5px;
+  -moz-border-radius:5px;
+  border-radius:5px;
+  -webkit-box-shadow:1 5px 10px rgba(0,0,0,.25);
+  -moz-box-shadow:1 5px 10px rgba(0,0,0,.25);
+  box-shadow:1px 5px 10px rgba(0,0,0,.25)
+}
+
+ul,li{
   list-style-type: none;
+}
+
+.scrollbox {
+  height: 46em;
+  overflow: auto;
+}
+
+.scrollbox ul{
   columns: 410px 2;
-  column-gap: 0;
+  column-gap: 1em;
   -moz-columns: 410px 2;
-  -moz-column-gap: 0;
+  -moz-column-gap: 1em;
   -webkit-columns: 410px 2;
-  -webkit-column-gap: 0;
+  -webkit-column-gap: 1em;
 }
 
 li.profile:last-child {
   margin-bottom: 300px;
 }
 
-.scrollbox {
-  height:630px;
-  overflow: scroll;
-}
-
 li.profile{
   height:240px;
-  width: 400px;
+  width: 80%;
   padding:10px;
   //margin-top: 10px;
   margin-bottom: 10px;
@@ -33,21 +57,7 @@ li.profile{
   padding-left: 20px;
   -webkit-box-shadow:1px 1px 10px rgba(0,0,0,.25);
   -moz-box-shadow: 1px 1px 10px rgba(0,0,0,.25);
-  box-shadow:1px 1px 10px rgba(0,0,0,.25)
-}
-
-.filter{
-  float: left;
-  margin:20px auto 6px;
-  padding:15px;
-  border:4px solid #fff;
-  background-color:#fff;
-  -webkit-border-radius:5px;
-  -moz-border-radius:5px;
-  border-radius:5px;
-  -webkit-box-shadow:1 5px 10px rgba(0,0,0,.25);
-  -moz-box-shadow:1 5px 10px rgba(0,0,0,.25);
-  box-shadow:1px 5px 10px rgba(0,0,0,.25)
+  box-shadow:1px 1px 10px rgba(0,0,0,.25);
 }
 
 .small-icon {

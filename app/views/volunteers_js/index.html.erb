@@ -1,8 +1,7 @@
 <div ng-controller="VolunteersListCtrl" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 
-  <div class="row">
-    <div class="span3" style="padding-left: 100px;">
-
+  <div class="row-fluid">
+    <div class="span3">
       <fieldset class="filter">
         <legend>Filter Volunteers</legend>
         <form novalidate>
@@ -143,11 +142,11 @@
                 {{volunteer.orgs_interested_in.slice(0,3).join(", ")}}
                       <span style="display:inline-block;" ng-init="is_shown_orgs = (volunteer.orgs_interested_in.length > 3)"
                             ng-show="is_shown_orgs">
-                        ...<a href="#" ng-click="is_shown_orgs=false">more</a><br>
+                        ...<a href="#" ng-click="is_shown_orgs=false" style="color:blue">more</a><br>
                       </span>
                       <span style="display:inline-block;" ng-show="!is_shown_orgs && (volunteer.orgs_interested_in.length > 3)">
                       {{", "+volunteer.orgs_interested_in.slice(3,volunteer.orgs_interested_in.length).join(", ")}}
-                      <a href="#" ng-click="is_shown_orgs=true">less</a><br>
+                      <a href="#" ng-click="is_shown_orgs=true" style="color:blue">less</a><br>
                       </span>
               </div>
             </div>
@@ -159,11 +158,11 @@
                 {{volunteer.causes_interested_in.slice(0,3).join(", ")}}
                       <span style="display:inline-block;" ng-init="is_shown_causes= (volunteer.causes_interested_in.length > 3)"
                             ng-show="is_shown_causes">
-                        ...<a href="#" ng-click="is_shown_causes=false">more</a><br>
+                        ...<a href="#" ng-click="is_shown_causes=false" style="color:blue">more</a><br>
                         </span>
                         <span style="display:inline-block" ng-show="!is_shown_causes && (volunteer.causes_interested_in.length > 3)">
                         {{", "+volunteer.causes_interested_in.slice(3,volunteer.causes_interested_in.length).join(", ")}}
-                        <a href="#" ng-click="is_shown_causes=true">less</a><br>
+                        <a href="#" ng-click="is_shown_causes=true" style="color:blue">less</a><br>
                         </span>
               </div>
             </div>
@@ -173,11 +172,11 @@
               <div style="float:left">
                 {{volunteer.languages_interested_in.slice(0,3).join(", ")}}
                 <span style="display:inline-block;" ng-init="is_shown_lang = (volunteer.languages_interested_in.length > 3)" ng-show="is_shown_lang">
-                        ...<a href="#" ng-click="is_shown_lang=false">more</a><br>
+                        ...<a href="#" ng-click="is_shown_lang=false" style="color:blue">more</a><br>
                     </span>
                     <span style="display:inline-block;" ng-show="!is_shown_lang && (volunteer.languages_interested_in.length > 3)">
                         {{", "+volunteer.languages_interested_in.slice(3,volunteer.languages_interested_in.length).join(", ")}}
-                        <a href="#" ng-click="is_shown_lang=true">less</a><br>
+                        <a href="#" ng-click="is_shown_lang=true" style="color:blue">less</a><br>
                     </span>
               </div>
             </div>
