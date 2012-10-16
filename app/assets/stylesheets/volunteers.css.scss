@@ -3,7 +3,7 @@ $scroll-height: 40em;
 .filter{
   margin-left: 15%;
   margin-right: 10%;
-  margin-top: 10%;
+  //margin-top: 10%;
   float: left;
   padding: 3%;
   //margin:20px auto 6px;
@@ -34,6 +34,7 @@ ul,li{
   -moz-column-gap: 1em;
   -webkit-columns: 410px 2;
   -webkit-column-gap: 1em;
+  margin-top: 1.5%;
 }
 
 li.profile:last-child {
