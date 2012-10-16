@@ -26,7 +26,7 @@ test:
   encodding: utf8
   database: test
   username: root
-  password: password
+  password:
   socket: /tmp/mysql.sock
 
 production:

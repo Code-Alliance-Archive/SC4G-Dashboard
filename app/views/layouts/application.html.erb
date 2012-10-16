@@ -29,17 +29,6 @@
 </head>
 <body>
 
-<div id="user_nav" class="navbar-fixed-top">
-  <p>
-  <% if member_signed_in? %>
-    Signed in as <%= current_member.email %>. Not you?
-    <%= link_to "Sign out", destroy_member_session_path, :method => :delete %>
-  <% else %>
-    <%= link_to "Sign up", new_member_registration_path %> or <%= link_to "sign in", new_member_session_path %>
-  <% end %>
-  </p>
-</div>
-
 <%= yield %>
 <footer class="navbar-fixed-bottom">
 <%= debug(params) if Rails.env.development? %></footer>

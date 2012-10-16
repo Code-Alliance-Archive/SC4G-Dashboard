@@ -648,6 +648,7 @@ CREATE TABLE `image_styles` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Stores configuration options for image styles.';
 
+<<<<<<< HEAD
 CREATE TABLE `logins` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL DEFAULT '',
@@ -684,6 +685,16 @@ CREATE TABLE `members` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_members_on_email` (`email`),
   UNIQUE KEY `index_members_on_reset_password_token` (`reset_password_token`)
+=======
+CREATE TABLE `members` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL,
+  `password_digest` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+>>>>>>> added member model with secure password
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `menu_custom` (
@@ -1305,10 +1316,8 @@ CREATE TABLE `wysiwyg_user` (
 
 INSERT INTO schema_migrations (version) VALUES ('20120905184235');
 
-INSERT INTO schema_migrations (version) VALUES ('20121003184452');
+INSERT INTO schema_migrations (version) VALUES ('20121016224233');
 
-INSERT INTO schema_migrations (version) VALUES ('20121003212900');
+INSERT INTO schema_migrations (version) VALUES ('20121016225657');
 
-INSERT INTO schema_migrations (version) VALUES ('20121010232026');
-
-INSERT INTO schema_migrations (version) VALUES ('20121010235824');
+INSERT INTO schema_migrations (version) VALUES ('20121016225942');

@@ -18,9 +18,9 @@ Feature: Request Volunteers API
 
   Scenario: Index action (No filtering)
     Given the following volunteers with time_submitted exist:
-      | id | email                  | name        | time_submitted    |
-      | 1  | TimOmbusa@example.com  | Tim Ombusa  | 1347978729        |
-      | 2  | MaksDiabin@example.com | Maks Diabin | 1346802773        |
+      | id | email                  | name        | time_submitted | period |
+      | 1  | TimOmbusa@example.com  | Tim Ombusa  | 3              | weeks  |
+      | 2  | MaksDiabin@example.com | Maks Diabin | 1              | months |
 
     When I visit "/volunteers.json"
     Then the JSON response should have 2 users

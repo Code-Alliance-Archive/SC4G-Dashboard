@@ -10,7 +10,11 @@ end
 Given /the following volunteers with time_submitted exist:/ do |table|
   table.hashes.each do |hash|
     value = WebformSubmission.new
-    value.submitted = hash['time_submitted']
+    period = hash['period']
+    number = hash['time_submitted'].to_i
+
+    value.submitted = number.send(period).ago
+
     Volunteer.create ({:id => hash['id'], :email => hash['email'], :name => hash['name'], :time_submitted_db => value})
   end
 end
