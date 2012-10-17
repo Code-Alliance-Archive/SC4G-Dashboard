@@ -1,13 +1,9 @@
 $scroll-height: 40em;
 
 .filter{
-  margin-left: 15%;
-  margin-right: 10%;
-  //margin-top: 10%;
+  margin-left: 50px;
   float: left;
-  padding: 3%;
-  //margin:20px auto 6px;
-  //padding:15px;
+  padding: 10px;
   border:4px solid #fff;
   background-color: white;
   -webkit-border-radius:5px;
@@ -23,31 +19,17 @@ ul,li{
 }
 
 .scrollbox {
+  margin-top: 20px;
   height: $scroll-height;
   overflow: auto;
 }
 
-.two-column-view{
-  columns: 410px 2;
-  column-gap: 1em;
-  -moz-columns: 410px 2;
-  -moz-column-gap: 1em;
-  -webkit-columns: 410px 2;
-  -webkit-column-gap: 1em;
-  margin-top: 1.5%;
-}
-
-li.profile:last-child {
-  margin-bottom: 300px;
-}
-
 li.profile{
+  display: inline-block;
   height:240px;
-  width: 80%;
+  width: 400px;
   padding:10px;
-  //margin-top: 10px;
-  margin-bottom: 10px;
-  margin-left: 10px;
+  margin: 10px;
   overflow:auto;
   border:1px;
   background-color:#fff;
