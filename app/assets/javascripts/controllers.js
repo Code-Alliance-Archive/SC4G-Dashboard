@@ -125,7 +125,6 @@ function VolunteersListCtrl($scope, $http) {
         if (time_selected != undefined && time_selected.length != 0) {
             url_string = url_string + '&time_to_commit=' + time_selected;
         }
-        console.log(open_source_projects)
 
         if (open_source_projects != undefined && open_source_projects != 'either' && open_source_projects.length != 0) {
             url_string = url_string + '&open_source_projects=' + open_source_projects;
@@ -176,4 +175,21 @@ function VolunteersListCtrl($scope, $http) {
     }
 
     init();
+
+
+    $scope.exportData = function(){
+        var resultArray = $scope.volunteers;
+        var csv="";
+        var csvRow = "";
+        for (var i=0;i<resultArray.length;i++)
+        {
+            var profile = resultArray[i];
+            csvRow = profile.name+"," + profile.company + "," + profile.orgs_interested_in + ","
+                     + profile.causes_interested_in + profile.languages_interested_in + "," +
+                     profile.time_to_commit;
+            csv += csvRow+"\n";
+        }
+
+        location.href='data:application/download,' + encodeURIComponent(csv);
+    }
 }

@@ -119,7 +119,9 @@
         </form>
       </fieldset>
     </div>
-    <div class="span9 scrollbox" id="wrapper">
+    <div class="span9">
+    <button ng-click="exportData()" class="btn">Export</button>
+    <div class="scrollbox" id="wrapper">
       <ul style="clear: both;">
         <li ng-repeat="volunteer in volunteers" class="profile">
           <div style="margin-left:10px; margin-right:10px;overflow: auto;">
@@ -190,6 +192,7 @@
           </div>
         </li>
       </ul>
+    </div>
     </div>
   </div>
 </div>
