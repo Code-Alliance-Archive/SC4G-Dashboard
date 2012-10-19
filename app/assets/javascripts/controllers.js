@@ -179,17 +179,17 @@ function VolunteersListCtrl($scope, $http) {
 
     $scope.exportData = function(){
         var resultArray = $scope.volunteers;
-        var csv="";
+        var csv="Name \t Email \t Company \t Organizations \t Causes \t Languages \t Time commit \n";
         var csvRow = "";
         for (var i=0;i<resultArray.length;i++)
         {
             var profile = resultArray[i];
-            csvRow = profile.name+"," + profile.company + "," + profile.orgs_interested_in + ","
-                     + profile.causes_interested_in + profile.languages_interested_in + "," +
+            csvRow = profile.name+"\t" + profile.email + "\t" + profile.company + "\t" + profile.orgs_interested_in + "\t"
+                     + profile.causes_interested_in + "\t" + profile.languages_interested_in + "\t" +
                      profile.time_to_commit;
             csv += csvRow+"\n";
         }
-
-        location.href='data:application/download,' + encodeURIComponent(csv);
+        window.open("data:application/vnd.ms-excel,"+encodeURIComponent(csv));
     }
+
 }
