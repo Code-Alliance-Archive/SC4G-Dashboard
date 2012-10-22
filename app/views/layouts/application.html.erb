@@ -2,36 +2,33 @@
 <html ng-app>
 <head>
   <title>SC4G</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
-  <!--<link href="/assets/bootstrap.css" rel="stylesheet">-->
-  <!--<link href="/assets/bootstrap-responsive.css" rel="stylesheet">-->
-  <!--<script src="/assets/bootstrap.js" type="text/javascript"></script>-->
 
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <script>
-      function toggleElement(elementId){
-          var element=document.getElementById(elementId);
-          if(!element)return true;
-          if(element.style.display=="none"){
-              element.style.display="block"
+      function toggleElement(elementId) {
+          var element = document.getElementById(elementId);
+          if (!element) return false;
+          if (element.style.display == "none") {
+              element.style.display = "block";
           }
-          else{
-              element.style.display="none"
+          else {
+              element.style.display = "none";
           }
           return true;
       }
 
   </script>
-
 </head>
 <body>
 
 <%= yield %>
 <footer class="navbar-fixed-bottom">
-<%= debug(params) if Rails.env.development? %></footer>
+  <%= debug(params) if Rails.env.development? %>
+</footer>
 
 </body>
 </html>

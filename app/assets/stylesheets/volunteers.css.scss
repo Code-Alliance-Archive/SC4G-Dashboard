@@ -42,9 +42,34 @@ li.profile{
   box-shadow:1px 1px 10px rgba(0,0,0,.25);
 }
 
+
+#wrapper {
+  .text-content{
+    float:left;
+    width:270px;
+    margin-left:10px;
+    span {
+      display: inline;
+      a {
+        color: blue;
+      }
+    }
+  }
+  .caption{
+    float:left;
+    width:100px;
+  }
+}
+
 .small-icon {
   width:20px;
   height:20px;
   margin-left: 5px;
   float:right;
+}
+
+#exportBtn{
+  float:right;
+  margin-right: 160px;
+  margin-bottom: 30px;
 }

@@ -62,33 +62,53 @@ function VolunteersListCtrl($scope, $http) {
         {name: 'Either', search_value:'either'}];
 
 
-    $scope.reset = function(){
-        var element = $scope.criteria;
-        element.name = "";
-        element.company = "";
-        element.email = "";
-        var skills = element.skills;
-        for (var i = 0; i < skills.length; i++){
-            skills[i].checked=false;
-        }
-        var orgs = element.orgs_interested_in;
-        for (var i = 0; i < orgs.length; i++){
-            orgs[i].checked=false;
-        }
-        var causes = element.causes_interested_in;
-        for (var i = 0; i < causes.length; i++){
-            causes[i].checked=false;
-        }
-        var languages = element.languages_interested_in;
-        for (var i = 0; i < languages.length; i++){
-            languages[i].checked=false;
-        }
-        element.time_selected = "";
-        element.open_source_answer = "";
-    }
+//    $scope.reset = function(){
+//        console.log("reset");
+//        var element = $scope.criteria;
+//        element.name = "";
+//        element.company = "";
+//        element.email = "";
+//        var skills = element.skills;
+//        for (var i = 0; i < skills.length; i++){
+//            skills[i].checked=false;
+//        }
+//        var orgs = element.orgs_interested_in;
+//        for (var i = 0; i < orgs.length; i++){
+//            orgs[i].checked=false;
+//        }
+//        var causes = element.causes_interested_in;
+//        for (var i = 0; i < causes.length; i++){
+//            causes[i].checked=false;
+//        }
+//        var languages = element.languages_interested_in;
+//        //noinspection JSDuplicatedDeclaration
+//        for (var i = 0; i < languages.length; i++){
+//            languages[i].checked=false;
+//        }
+//        element.time_selected = "";
+//        element.open_source_answer = "";
+//    }
 
     $scope.filter = function(){
+        console.log("filter");
         init();
+    }
+
+
+    $scope.exportData = function(){
+        console.log("export filter results");
+        var resultArray = $scope.volunteers;
+        var csv="Name \t Email \t Company \t Organizations \t Causes \t Languages \t Time commit \n";
+        var csvRow = "";
+        for (var i=0;i<resultArray.length;i++)
+        {
+            var profile = resultArray[i];
+            csvRow = profile.name+"\t" + profile.email + "\t" + profile.company + "\t" + profile.orgs_interested_in + "\t"
+                + profile.causes_interested_in + "\t" + profile.languages_interested_in + "\t" +
+                profile.time_to_commit;
+            csv += csvRow+"\n";
+        }
+        window.open("data:application/vnd.ms-excel,"+encodeURIComponent(csv));
     }
 
 
@@ -170,26 +190,5 @@ function VolunteersListCtrl($scope, $http) {
         return elem.search_value;
     }
 
-    function getSkills(skills){
-        return skills.filter(isChecked).map(mapElemToSearchValue);
-    }
-
     init();
-
-
-    $scope.exportData = function(){
-        var resultArray = $scope.volunteers;
-        var csv="Name \t Email \t Company \t Organizations \t Causes \t Languages \t Time commit \n";
-        var csvRow = "";
-        for (var i=0;i<resultArray.length;i++)
-        {
-            var profile = resultArray[i];
-            csvRow = profile.name+"\t" + profile.email + "\t" + profile.company + "\t" + profile.orgs_interested_in + "\t"
-                     + profile.causes_interested_in + "\t" + profile.languages_interested_in + "\t" +
-                     profile.time_to_commit;
-            csv += csvRow+"\n";
-        }
-        window.open("data:application/vnd.ms-excel,"+encodeURIComponent(csv));
-    }
-
 }

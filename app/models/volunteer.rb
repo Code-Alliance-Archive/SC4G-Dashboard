@@ -175,4 +175,5 @@ class Volunteer < ActiveRecord::Base
   def format_string_value(value, title)
     'approximately ' + value.round.to_s + ' ' + title +'(s) ago'
   end
+
 end
