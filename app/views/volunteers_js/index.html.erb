@@ -125,7 +125,7 @@
         <button ng-click="exportData()" class="btn" id="exportBtn">Export</button>
         <ul style="clear: both;">
           <li ng-repeat="volunteer in volunteers" class="profile">
-            <div style="margin-left:10px; margin-right:10px;overflow: auto;">
+            <div>
               <h4 style="text-align: left;"><a href="/volunteers/{{volunteer.id}}">{{volunteer.name}}</a>
                 <a href="mailto:{{volunteer.email}}" class="small-icon"><img src="./assets/Carta.png"/></a>
                 <a href="http://www.linkedin.com" class="small-icon"><img src="./assets/linkedin-icon-gif.gif"/></a>
@@ -141,7 +141,7 @@
               <strong class="caption">Organizations</strong>
 
               <div class="text-content">
-                <div style="float:left">
+                <div>
                   {{volunteer.orgs_interested_in.slice(0,3).join(", ")}}
                       <span ng-init="is_shown_orgs = (volunteer.orgs_interested_in.length > 3)"
                             ng-show="is_shown_orgs">
@@ -157,7 +157,7 @@
               <strong class="caption">Causes</strong>
 
               <div class="text-content">
-                <div style="float:left">
+                <div>
                   {{volunteer.causes_interested_in.slice(0,3).join(", ")}}
                       <span ng-init="is_shown_causes= (volunteer.causes_interested_in.length > 3)"
                             ng-show="is_shown_causes">
@@ -172,7 +172,7 @@
               <strong class="caption">Languages</strong>
 
               <div class="text-content">
-                <div style="float:left">
+                <div>
                   {{volunteer.languages_interested_in.slice(0,3).join(", ")}}
                 <span ng-init="is_shown_lang = (volunteer.languages_interested_in.length > 3)" ng-show="is_shown_lang">
                         ...<a href="#" ng-click="is_shown_lang=false">more</a><br>
