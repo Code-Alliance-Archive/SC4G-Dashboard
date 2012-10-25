@@ -88,7 +88,7 @@ class Volunteer < ActiveRecord::Base
       time = 'N/A'
     else
       unix_time  = time_submitted_db.submitted
-      time = Time.at(unix_time).ctime
+      time = Time.at(unix_time).strftime("%m/%d/%Y")
     end
     time
   end
