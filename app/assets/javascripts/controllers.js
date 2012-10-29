@@ -62,32 +62,7 @@ function VolunteersListCtrl($scope, $http) {
         {name: 'Either', search_value:'either'}];
 
 
-//    $scope.reset = function(){
-//        console.log("reset");
-//        var element = $scope.criteria;
-//        element.name = "";
-//        element.company = "";
-//        element.email = "";
-//        var skills = element.skills;
-//        for (var i = 0; i < skills.length; i++){
-//            skills[i].checked=false;
-//        }
-//        var orgs = element.orgs_interested_in;
-//        for (var i = 0; i < orgs.length; i++){
-//            orgs[i].checked=false;
-//        }
-//        var causes = element.causes_interested_in;
-//        for (var i = 0; i < causes.length; i++){
-//            causes[i].checked=false;
-//        }
-//        var languages = element.languages_interested_in;
-//        //noinspection JSDuplicatedDeclaration
-//        for (var i = 0; i < languages.length; i++){
-//            languages[i].checked=false;
-//        }
-//        element.time_selected = "";
-//        element.open_source_answer = "";
-//    }
+
 
     $scope.filter = function(){
         console.log("filter");
