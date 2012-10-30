@@ -5,6 +5,13 @@ gem 'bootstrap-sass'
 gem 'vmc'
 gem 'rabl'
 
+# Authentication & Authorization
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'cancan'
+
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
