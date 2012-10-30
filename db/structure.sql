@@ -1154,7 +1154,11 @@ CREATE TABLE `volunteers` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`id`)
+<<<<<<< HEAD
 ) ENGINE=InnoDB AUTO_INCREMENT=211 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+=======
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+>>>>>>> create initial migration to create db if it doesn't already exist
 
 CREATE TABLE `watchdog` (
   `wid` int(11) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key: Unique watchdog event ID.',
@@ -1272,6 +1276,8 @@ CREATE TABLE `wysiwyg_user` (
   KEY `uid` (`uid`),
   KEY `format` (`format`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Stores user preferences for wysiwyg profiles.';
+
+INSERT INTO schema_migrations (version) VALUES ('20120904000000');
 
 INSERT INTO schema_migrations (version) VALUES ('20120905184235');
 

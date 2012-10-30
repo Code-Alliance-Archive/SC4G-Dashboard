@@ -65,7 +65,7 @@ describe "Volunteer" do
       @volunteer = Volunteer.find(1)
 
       @volunteer.name.should == "FirstName_1 LastName_1"
-      @volunteer.time_submitted.should == Time.at(1311789532).to_datetime
+      @volunteer.time_submitted.should == Time.at(1311789532).strftime('%m/%d/%Y')
     end
   end
 

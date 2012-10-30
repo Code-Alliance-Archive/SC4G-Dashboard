@@ -9,7 +9,7 @@ gem 'rabl'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2', '~> 0.3.11'
+gem 'mysql2'
 #gem 'activerecord-mysql-adapter'
 
 group :development, :test do
