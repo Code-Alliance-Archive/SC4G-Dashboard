@@ -4,7 +4,6 @@ gem 'rails', '3.2.8'
 gem 'bootstrap-sass'
 gem 'vmc'
 gem 'rabl'
-gem 'bcrypt-ruby', '3.0.1'
 
 
 # Bundle edge Rails instead:
