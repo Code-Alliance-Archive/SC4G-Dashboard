@@ -13,6 +13,10 @@ gem 'omniauth-google-oauth2'
 gem 'cancan'
 
 
+#Other
+gem 'friendly_id'
+gem 'activerecord-reputation-system', require: 'reputation_system'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
