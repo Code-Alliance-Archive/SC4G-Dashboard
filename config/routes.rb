@@ -1,4 +1,6 @@
 SV4G::Application.routes.draw do
+  devise_for :users
+
   resources :volunteers
   resources :volunteers_js
   root :to => 'volunteers_js#index'
