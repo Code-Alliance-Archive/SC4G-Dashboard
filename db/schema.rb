@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121016225942) do
+ActiveRecord::Schema.define(:version => 20121030000000) do
 
   create_table "actions", :primary_key => "aid", :force => true do |t|
     t.string "type",       :limit => 32,         :default => "",  :null => false
@@ -614,14 +614,6 @@ ActiveRecord::Schema.define(:version => 20121016225942) do
   end
 
   add_index "image_styles", ["name"], :name => "name", :unique => true
-
-  create_table "members", :force => true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
-    t.string   "password_digest"
-  end
 
   create_table "menu_custom", :primary_key => "menu_name", :force => true do |t|
     t.string "title",       :default => "", :null => false
