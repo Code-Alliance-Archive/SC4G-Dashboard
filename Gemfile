@@ -4,7 +4,6 @@ gem 'rails', '3.2.8'
 gem 'bootstrap-sass'
 gem 'vmc'
 gem 'rabl'
-gem 'bcrypt-ruby', '3.0.1'
 
 
 # Bundle edge Rails instead:
@@ -16,7 +15,6 @@ gem 'mysql2', '~> 0.3.11'
 group :development, :test do
   gem 'rspec-rails', '2.11.0'
   gem 'capybara', '1.1.2'
-  #gem 'capybara-webkit'
 end
 
 # Gems used only for assets and not required
@@ -36,7 +34,6 @@ gem 'cloudfoundry-jquery-rails'
 group :test do
   gem 'cucumber'
   gem 'cucumber-rails'
-  #gem 'capybara-webkit'
   gem 'capybara-json'
   gem 'json_spec'
   gem 'factory_girl_rails', '1.4.0'
