@@ -26,6 +26,7 @@
 #
 
 class User < ActiveRecord::Base
+  self.table_name = "devise_users"
   # Devise modules. Others available are: :token_authenticatable, :lockable, :timeoutable
   devise :database_authenticatable, :registerable, :omniauthable, :confirmable, :recoverable, :rememberable, :trackable, :validatable
 
